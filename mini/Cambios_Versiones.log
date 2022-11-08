@@ -1,0 +1,86 @@
+----------------------------------------------------
+Cambios de v9 a v10
+----------------------------------------------------
+- Introducir la tabla "ofertas" en el diseño de la 
+  base de datos.
+- Pieza "menu_lateral" con el ejemplo de un menú en
+  forma de array con las opciones posibles y usable
+  como argumento para implementar diferentes tipos 
+  de menús visuales.
+- Ampliar clase "modelo" con métodos para la gestión
+  de mensajes de error.
+- Corregir un error en la función "depurar" cuando
+  se le pasa una cadena solamente.
+----------------------------------------------------
+Cambios de v8 a v9
+----------------------------------------------------
+- Introducir en el controlador "catalogo" un ejemplo
+  de accion "add" para añadir un artículo a la cesta
+  en función de su referencia.
+  
+----------------------------------------------------
+Cambios de v7 a v8
+----------------------------------------------------
+- Crear el controlador "catalogo" y ejemplo básico
+  de visualización de artículos en la acción "ver"
+  que se configura por defecto.
+  
+----------------------------------------------------
+Cambios de v6 a v7
+----------------------------------------------------
+- Introducir el concepto del posible "Mapeo de Acciones".
+- Adaptar las reglas ".htaccess" a la versión del
+  servidor "Apache 2.4".
+- Mejora en la presentación de las plantillas y 
+  diferenciación entre plantilla pública y privada,
+  haciendo que la "principal" cargue una u otra en
+  función del "modo publico" de la aplicación.
+- Modificar plantilla de error para que use la 
+  pública en caso de no haber usuario conectado.
+  
+----------------------------------------------------
+Cambios de v5 a v6
+----------------------------------------------------
+- Incluir el controlador de catálogo de artículos 
+  para la visualización y ejecución de acciones
+  relacionadas con una tienda de venta.
+  
+----------------------------------------------------
+Cambios de v4 a v5
+----------------------------------------------------
+- Ahora se pueden establecer los permisos para controlar el que 
+  los usuarios accedan a las acciones y controladores según el 
+  permiso concedido a su "rol".
+- Completada la funcion "puede_ejecutar" del archivo "/funciones/permisos.php".
+- La configuración de permisos se establece en el archivo
+  "/configuraciones/permisos.php".
+- La clase de "usuario" que se usa para la sesión se amplia con el 
+  atributo "rol" para poder comprobar el permiso de ejecucion.
+- A la hora de hacer "login" se debe crear una instancia de "usuario",
+  rellenarla y guardarla en sesión con el nombre "usuario".
+- Ampliado el metodo "vistas::generarPagina" para que admita el 
+  argumento "$vista" con valor nulo (null) y asi no intentar cargar
+  un archivo de vista obligatoriamente. Con esto el "$contenido" se
+  quedaría vacío, así que se amplía la detección de los datos que
+  vienen en "$parametros" haciendo que si existe la clave "contenido"
+  se copie a la variable "$contenido" para que se mezcle en la 
+  plantilla final.
+- Creada la función "generar_pagina_error()" dentro de "vistas.php"
+  para poder generar un mensaje de error usando una plantilla general
+  de aplicación que por defecto se llama "error.php" y que debe estar
+  ubicada en "/vistas/". Así se pueden mostrar errores más "bonitos".
+- Modificada la función "generar_error_html" del archivo 
+  "/funciones/errores.php" para que haga uso de la funcion de 
+  generación de errores usando la plantilla "error.php".
+
+----------------------------------------------------
+Cambios de v3 a v4
+----------------------------------------------------
+- Añadido Mantenimiento de Pedidos
+  - Añadidos modelos "pedido" y "pedidolin".
+  - Añadido controlador "pedidos".
+    *** Faltan acciones de control para agregar/editar/eliminar lineas de pedido.
+  - Añadida carpeta "vistas/pedidos" con las vistas usadas.
+- Añadidos estilos a "recursos/principal.css".
+- Añadido método "cargarRegistro" a clase "modeloDAO" como ampliación/mejora del metodo "llenar".
+- Añadido opción de enlace a Pedidos al menú en "vistas/piezas/menu_lateral.php"

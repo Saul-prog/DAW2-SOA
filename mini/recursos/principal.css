@@ -1,0 +1,349 @@
+/* ----------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------- */
+.salto {
+  clear:both;/*para que salga siempre debajo de los bloques superiores*/
+}
+
+.pagina {
+  margin:1mm;
+  background-color:rgb(240,240,192);
+  color:rgb(16,16,32);
+  font-family:verdana, arial;
+  font-size:12pt;
+  padding:0mm;
+}
+
+
+
+div.cabecera {
+  padding:1mm;
+  margin:1mm 0mm;
+  /*height:12mm;/*si se quiere poner una alto, debe ajustarse al logo usado o similar */
+  background-color:rgb(128,128,240);
+}
+
+div.cuerpo {
+  margin:0mm;/*dejar al menu y al contenido su espacio propio*/
+  padding:0mm;/*dejar al menu y al contenido su espacio propio*/
+  /*background-color:rgb(255,255,0);/*comentar cuando se quiera ver el color de la ".pagina" */
+}
+
+div.pie {
+  padding:1mm;
+  margin:1mm 0mm;
+  background-color:rgb(128,240,128);
+  text-align:center;
+  font-size:90%;
+}
+
+div.menu-izq {
+  /*border:2px ridge black;/*comprobar el espacio que ocupa (solid dotted dashed double ridge groove inset outset) */
+  margin:0mm;
+  padding:1mm;
+  background-color:rgb(240,128,128);
+  float:left;
+  width:50mm; /*darle un ancho maximo al menu para poder colocarlo junto al contenido */
+  height:100mm; /*si se quiere darle un alto maximo */
+}
+
+div.contenido {
+  /*border:2px solid black;/*para depurar temporalmente*/
+  margin:0mm 0mm 0mm 0mm;
+  padding:1mm;
+  background-color:rgb(240,244,240);/*comentar cuando se quiera ver el color de la ".pagina" */
+}
+
+div.contenido-privado {
+  /*border:2px solid black;/*para depurar temporalmente*/
+  margin:0mm 0mm 0mm 53mm;
+  padding:1mm;
+  background-color:rgb(244,240,240);/*comentar cuando se quiera ver el color de la ".pagina" */
+}
+
+/*Adaptar estilo a un dispositivo movil con una tamaño menor a 1/3 del menu de 50mm.*/
+/*Podría especificarse el tipo de orientacion con la regla " and (orientation:landscape)" o " and (orientation:portrait)", pero por ahora no es necesario */
+@media screen and (max-device-width:149mm) {
+  div.menu-izq { float:none; width:auto; height:auto; margin:1mm 0mm; }
+  div.contenido { margin:0mm; }
+}
+
+/* ----------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------- */
+.menu ul {
+  list-style:none;
+  margin:0mm;
+  padding:0mm;
+  /*background-color:rgb(120,240,240);/*comentar cuando se quiera dejar limpio*/
+}
+.menu a {
+  margin:1mm 0mm;
+  display:block;
+  text-align:center;
+  text-decoration:none;
+  line-height:1.75em;
+  border:1px solid rgb(190,120,120);
+  border-radius:2mm;
+  background-color:rgb(240,190,120);
+  color:rgb(0,32,64);
+}
+.menu a:hover {
+  background-color:rgb(250,250,120);
+  color:rgb(0,64,120);
+}
+/*-----------------------------------------------------------------------------------*x/
+.menu2 ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+.menu2 li{
+  float: left;
+}
+.menu2 a {
+  margin:1mm 0mm;
+  display:inline-block;
+  text-align:center;
+  text-decoration:none;
+  line-height:1.75em;
+  border:1px solid rgb(190,120,120);
+  border-radius:2mm;
+  background-color:rgb(240,190,120);
+  color:rgb(0,32,64);
+}
+.menu2 a:hover {
+  background-color:rgb(250,250,120);
+  color:rgb(0,64,120);
+}
+/*----------------------------------------------------------------------------------*/
+.menu2 ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(240,190,120);
+}
+
+.menu2 li {
+  float: left;
+  border-right:1px solid #bbb;
+}
+
+.menu2 li:last-child {
+  border-right: none;
+}
+
+.menu2 li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.menu2 li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.menu2 .active {
+  background-color: #04AA6D;
+}
+/**********************************************************************/
+
+
+
+/* ----------------------------------------------------------------------- */
+div.usuario {
+  float:right;
+  text-align:right;
+  background-color:rgb(160,208,240);
+  border:1px solid rgb(190,120,120);
+  border-radius:2mm;
+  padding:1mm;
+}
+
+/* ----------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------- */
+.hoja table {
+  margin:0mm;
+  padding:0mm;
+  width:100%;
+  background-color:rgb(60,120,60);
+  border-radius:1mm;
+}
+.hoja table thead {
+  background-color:rgb(190,240,190);
+}
+.hoja table tfoot {
+  background-color:rgb(190,220,190);
+  text-align: center;
+}
+.hoja table tbody.ficha th {
+  background-color:rgb(190,240,190);
+  text-align: left;
+  width:5cm;
+}
+.hoja table tbody.formulario th {
+  background-color:rgb(190,240,190);
+  text-align: left;
+  width:5cm;
+}
+.hoja table tr.par, .hoja table tbody.ficha, .hoja table tbody.formulario {
+  background-color:rgb(150,220,190);/**/
+}
+.hoja table tr.impar {
+  background-color:rgb(190,220,220);
+}
+.hoja table tbody.formulario input {
+  width:98.5%;
+  background-color:rgb(250,250,240);/**/
+  border:none;
+  line-height:1.5em;
+  padding:0mm 0.5em;
+}
+/* Estilo para una "hoja" embebida dentro de otra o "interior" */
+.hoja .hoja, .interior {
+  margin:.25em;
+}
+.hoja table tbody.ficha .hoja th, .hoja table tbody.formulario .hoja th {
+  /*background-color:rgb(190,240,190);/**/
+  text-align: center;
+  width:auto;
+}
+.hoja .totales th, .hoja .totales td {
+  font-weight:bold;
+  text-align:right;
+}
+/* Alineaciones para elementos de bloque y/o celdas de una tabla */
+.izq { text-align:left!important; }
+.der { text-align:right!important; }
+.cen { text-align:center!important; }
+.jus { text-align:justify!important; }
+
+/* ----------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------- */
+.paginador ul {
+  list-style:none;
+  margin:0mm;
+  padding:0mm;
+  /*background-color:rgb(120,240,240);/*comentar cuando se quiera dejar limpio*/
+  font-size:0.85em;
+  display:inline;
+  clear:both;
+}
+.paginador li {
+  display:inline;
+  margin:1mm 0.5mm;
+  /*display:block; float:left;/**/
+}
+.paginador a, .paginador span {
+  margin:0mm 0mm;
+  padding:0mm 0.5em;
+  display:inline-block;
+  text-align:center;
+  text-decoration:none;
+  line-height:1.5em;/**/
+  color:rgb(0,32,64);
+}
+.paginador a {
+  border:1px solid rgb(190,120,120);
+  border-radius:2mm;
+  background-color:rgb(120,190,240);
+}
+.paginador a:hover {
+  background-color:rgb(250,250,120);
+}
+.paginador a.actual {
+  background-color:rgb(190,240,240);
+}
+.paginador a.actual:hover {
+  background-color:rgb(250,250,190);
+}
+
+/* ----------------------------------------------------------------------- */
+/* ----------------------------------------------------------------------- */
+div.acciones {
+  margin:0mm;
+  padding:0mm;
+  /*background-color:rgb(120,240,240);/*comentar cuando se quiera dejar limpio*/
+  font-size:0.85em;
+  display:block;
+  clear:both;
+  text-align:center;
+}
+div.acciones.linea {
+  display:inline-block;
+}
+.acciones a {
+  display:inline;
+  margin:0mm 0.25em;
+  padding:0mm 0.5em;
+  display:inline;
+  text-align:center;
+  text-decoration:none;
+  line-height:1.5em;/**/
+  color:rgb(0,32,64);
+
+  border:1px solid rgb(190,120,120);
+  border-radius:2mm;
+  background-color:rgb(190,220,120);
+}
+.acciones a:hover {
+  background-color:rgb(250,250,120);
+}
+.acciones a.activo {
+  background-color:rgb(220,240,190);
+}
+.acciones a.activo:hover {
+  background-color:rgb(250,250,120);
+}
+
+/* ------------------------------------------------------------- */
+.articulos {
+  margin:0px;
+  padding:5px;
+  /*border:1px solid blue;/**/
+}
+.articulo {
+  position:relative;
+  float:left;
+  margin:0; padding:0; /*necesario para que las columnas salgan bien*/
+  /*width:20%;/*5 columnas*/
+  width:25%;/*4 columnas*/
+  /*width:33%;/*3 columnas*/
+}
+.caja-sombra {
+  background-color:#A0C080;
+  border: 1px solid #B0D090;
+  border-radius: 8px;
+  box-shadow: 3px 3px 6px #000000;
+  margin:4px;
+  padding:3px 6px;
+}
+.caja-sombra:hover {
+  background-color:#B0D090;
+  box-shadow: 5px 5px 6px #000000, 5px 5px 4px #806060;
+  icon: hand;
+}
+.precio-bajo {
+  color:#44F;
+}
+
+
+.portal ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+.portal li{
+  float: right;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}

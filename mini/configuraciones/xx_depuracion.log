@@ -1,0 +1,4 @@
+2021-09-21 19:42:08.855 basedatos::conectar Error BD(1049): Unknown database 'daw_tienda'
+2021-09-21 19:42:08.881 basedatos::conectar Error BD(1049): Unknown database 'daw_tienda'
+2021-09-27 19:12:27.140 basedatos::conectar Error BD(1049): Unknown database 'daw_tienda'
+2021-09-27 19:12:27.175 basedatos::conectar Error BD(1049): Unknown database 'daw_tienda'

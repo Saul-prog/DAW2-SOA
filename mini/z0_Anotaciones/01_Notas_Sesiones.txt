@@ -1,0 +1,27 @@
+-----------------------------------------------
+Notas Sesion
+-----------------------------------------------
+
+*** Para poder almacenar datos diversos en la sesión, hay muchas posibilidades, se muestra a continuación la más básica...
+
+$_SESSION['carro']= array( e1, e2, ...);
+
+e1= array( id=xxxx, cantidad=2)
+
+Agregar elemento
+	$_SESSION['carro'][]= array( id=xxxx, cantidad=1);
+
+Modificar elemento
+	$_SESSION['carro'][0]= array( id=xxxx, cantidad=2);
+
+Eliminar elemento
+	unset( $_SESSION['carro'][2]);
+
+*** Ahora bien, ya que tenemos un mini-framework que incluye una clase para el manejo de la sesión, se puede aprovechar...
+
+Supongamos que se tiene un modelo de datos de clase "carroCompra", en el que se tienen los métodos para manipular dicho carro de la compra, y se desea mantener en la sesión del usuario conectado.
+
+$miCarro= sesion::get( 'carro'); //Para obtener el carro de la sesión y poder trabajar con el si es válido.
+if ($miCarro === null) $miCarro= new carroCompra; //Para crear la instancia del carro si no existe en la sesión.
+sesion::set( 'carro', $miCarro); //Para guardar el carro en la sesión una vez se han hecho los cambios deseados.
+sesion::set( 'carro', null); //Para eliminar el carro de la sesión y no tenerlo disponible.

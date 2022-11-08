@@ -1,0 +1,49 @@
+
+carpeta --> /xampp/htdocs/daw2/.
+...o donde esté instalada si se usa un alias o un servidor diferente.
+
+./index.php -> Punto de entrada para toda la aplicación.
+
+./configuraciones/ -> carpeta con archivos de configuración y de registro de depuración / LOG, los cuales pueden variar durante la ejecución del sistema, con lo que esta carpeta debe ser "escribible" por el servidor apache/php.
+
+./controladores/ -> carpeta con los controladores de la aplicación, como pueden ser...
+  ./controladores/inicio.php
+  ./controladores/clientes.php
+  ./controladores/articulos.php
+  ./controladores/catalogo.php
+  ./controladores/...
+
+./modelos/ -> carpeta con archivos que representan los modelos de datos de la aplicación.
+  ./modelos/cliente.php -> modelo de datos de un cliente.
+  ./modelos/articulo.php -> modelo de datos de un articulo.
+  ./modelos/pedido.php -> modelo de datos de un pedido. Usa las lineas de pedido también.
+  ./modelos/pedidolin.php -> modelo de datos de una linea de pedido.
+  ./modelos/...
+
+./vistas/ -> carpeta con las vistas globales de la aplicación, y con las subcarpetas correspondientes a cada controlador que use alguna vista propia.
+  ./vistas/principal.php -> plantilla HTML con el diseño y la estructura final de la aplicación. Aunque decide según el modo activo que parte carga (publica o privada).
+  ./vistas/publica.php -> plantilla HTML con el diseño y la estructura final de la aplicación en modo público.
+  ./vistas/privada.php -> plantilla HTML con el diseño y la estructura final de la aplicación en modo privado.
+  ./vistas/error.php -> plantilla HTML que usa la principal para mostrar errores graves de la aplicación.
+  
+  ./vistas/piezas/... -> vistas parciales con las piezas genéricas de código HTML/PHP para usar en cualquier lugar que se necesiten.
+  
+  ./vistas/inicio/... -> vistas parciales para el controlador "inicio".
+  ./vistas/clientes/... -> vistas parciales para el controlador "clientes".
+    ./vistas/clientes/admin.php -> vista para "administrar" los clientes.
+    ./vistas/clientes/ver.php -> vista para "ver" un cliente.
+    ./vistas/clientes/crear.php -> vista para "crear" un cliente.
+    ./vistas/clientes/...
+  ./vistas/articulos/... -> vistas parciales para el controlador "articulos".
+  ./vistas/...
+
+./recursos/ -> carpeta con los archivos de recursos para la aplicación. Se incluyen aquí las hojas de estilo ".css", código javascript ".js", imagenes utilizadas en la aplicación, etc.
+
+./funciones/ -> carpeta con los archivos del mini-framework que permite la ejecución de todo el sistema. Se debe analizar y estudiar el código que está aquí contenido para comprender el funcionamiento del sistema con todo detalle, y la forma de aprovechar todas sus posibilidades. Si se desea ampliar alguna funcionalidad se recomienda crear archivos adicionales con los contenidos y agregar su inclusión (require_once) en el archivo de "funciones.php".
+
+./z0_Anotaciones/ -> carpeta con documentación, notas y esquema de la base de datos con la que se debe trabajar.
+
+***Los archivos ".htaccess" que aparecen en algunas carpetas sirven para impedir acceso directo por URL a estas ubicadiones, se usa la regla "deny from all" cuando el servidor Apache es anterior a la versión 2.4 o la regla "Require all denied" si es versión 2.4 y superiores (por ahora).
+
+
+

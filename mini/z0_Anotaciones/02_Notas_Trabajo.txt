@@ -1,0 +1,57 @@
+Utilizando como modelo MVC del boceto del framework comentado en clase, se debe ampliar con controladores, vistas y modelos para ejecutar funcionalidades reales.
+
+Se recomienda aprovechar los conocimientos de la asignatura DAW1 y los ejercicios realizados acerca de la gestión de Artículos, Clientes y Pedidos.
+
+1) Los mantenimientos desde el punto de vista del Empleado, que no hay que implementar ya que se incluye en el boceto junto con el esquema de la base de datos, son:
+
+-Articulos
+  -Altas
+  -Bajas
+  -Modificaciones
+  -Consultas 
+  -Busquedas / Administracion
+  
+-Clientes
+  -Altas
+  -Bajas
+  -Modificaciones
+  -Consultas 
+  -Busquedas / Administracion
+  
+-Pedidos
+  -Altas
+  -Bajas
+  -Modificaciones
+  -Consultas 
+  -Busquedas / Administracion
+
+
+2) Se debe crear y desarrollar un pequeño portal web en el que se pueda ver de forma pública un catálogo de artículos, que puedan ser elegidos en una cesta de la compra y esa cesta de la compra pueda ser pedida por un usuario que deberá estar registrado como cliente, o si no lo está, se registra en el momento de hacer el pedido.
+
+-Portal 
+  -Parte pública para usuarios
+    -Catalogo de Artículos / Navegable
+    -Seleccionar artículo para el carro de la compra.
+      -Agregar linea del carro.
+  -Ver contenido del carro.
+    -Quitar línea del carro.
+    -Incrementar,Decrementar,Modificar cantidad de una línea del carro.
+    -Vaciar el carro.
+    -Conmprar: Página previa a la confirmación del Pedido con el contenido del carro.
+      -Conectar como cliente o registrarse.
+      -Confirmar Pedido con el contenido del carro.
+  -Acceso de Usuario como Cliente: Login / Logout.
+  -Registro de Usuario -> Cliente.
+
+3) Si se desea ampliar las funcionalidades del sistema, podéis atreveros con el control de accesos y permisos del usuario, y en concreto con lo siguiente:
+
+  -Parte privada para Clientes
+    -Ver Ficha cliente conectado.
+    -Ver Pedidos cliente conectado.
+  -Impedir ver datos de otros clientes.
+    
+  -Parte privada para Empleados
+    *** Mantenimiento de Articulos
+    *** Mantenimiento de Clientes
+    *** Mantenimiento de Pedidos
+
