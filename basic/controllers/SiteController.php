@@ -12,6 +12,8 @@ use app\models\ContactForm;
 
 class SiteController extends Controller
 {
+    //Para hacer una acciónpor defecto
+    //public $defaultAction='About';
     /**
      * {@inheritdoc}
      */
