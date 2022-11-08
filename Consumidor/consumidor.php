@@ -1,3 +1,11 @@
+<form name="formulario"method="get"action="consumidor.php">
+
+       Provincia: <input type="text"name="Provincia"value="Zamora">
+       Año: <input type="text"name="anyo"value="2020">
+       <input type="submit"/>
+
+</form>
+
 <?php	
 $datos=json_decode(file_get_contents('https://servicios.ine.es/wstempus/js/es/DATOS_TABLA/3995?tip=AM'));
 $provincia=isset($_GET["Provincia"]) ? $_GET["Provincia"] : "Total Nacional";
@@ -21,31 +29,6 @@ foreach($datos as $dato){
             }
         } 
     }
-    /*
-        if(strcmp($dato->MetaData->Nombre,$provincia)==0){
-            echo '<p>'.$dato->MetaData->Nombre.'</p>';
-        }
-    */
 }
+?>
 
-
-
-
-
-/*
-foreach ($datos as $key => $value) {
-
-        
-        foreach ($value['MetaData'] as $key2 => $value2){
-            echo '<p>Nombre '.$key2.'=>'.$value2['Nombre'];
-            if(strcmp($value2['Nombre'],$provincia)==0){
-                echo '<p>Nombre '.$key2.'=>'.$value2['Nombre'];
-                foreach ($value['Data'] as $key3 => $value3){
-                    if($anyo==(int)$value3['Anyo']){
-                        echo '<p>Periodo '.$value3['T3_Periodo'].' Año: '.$value3['Anyo'].' Porcentaje: '.$value3['Valor'].'</p>';
-                    }
-                }
-            }
-        }
-}
-*/
