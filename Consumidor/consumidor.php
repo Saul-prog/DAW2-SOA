@@ -146,7 +146,7 @@ if(strcmp($opc,"OP1")==0){
 */
 if(strcmp($opc,"OP2")==0){
     $datos1=json_decode(file_get_contents('https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=puntos-de-recarga-del-vehiculo-electrico&q=&facet=nombre&facet=operador&facet=tipo    '));
-    echo '<table>';
+    echo '<table border="1">';
     echo '<tr>';
     echo '<td>Nombre</td>';
     echo '<td>Dirección</td>';
@@ -181,11 +181,11 @@ if(strcmp($opc,"OP3")==0){
 
     Fecha Inicio      
             <input type="date" id="start" name="inicial"
-                value="2021-06-01"
+                value="2006-09-25"
                 min="2006-09-25" max="2022-12-12">
     Fecha Fin
             <input type="date" id="start" name="final"
-                value="2021-06-01"
+                value="2022-12-12"
                 min="2006-09-25" max="2022-12-12">
             <input type="submit"/>
     </form>
@@ -193,7 +193,81 @@ if(strcmp($opc,"OP3")==0){
     $datos=json_decode(file_get_contents('https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=convocatorias-de-empleo-publico&q=&sort=fechafinalizacion&facet=tipo&facet=organismo_gestor&facet=fechabocyl'));
     $inicio=isset($_POST["inicial"]) ? $_POST["inicial"] : "2022-12-12";
     $fin=isset($_POST["final"]) ? $_POST["final"] : "2022-12-12";
-    echo '<p>Es el año ini:'.$inicio .'</p>';
+    echo '<p>Es el año inicio:'.$inicio .'</p>';
     echo '<p>Es el año fin:'.$fin .'</p>';
-    var_dump($datos);
+   
+    echo '<table border="1">';
+    echo '<tr>';
+    echo '<td>Titulo</td>';
+    echo '<td>Clasificador</td>';
+    echo '<td>Tipo</td>';
+    echo '<td>Organismo Gestor</td>';
+    echo '<td>Número de plazas</td>';
+    echo '<td>Requerimientos necesarios</td>';
+    echo '<td>Municipio</td>';
+    echo '<td>Fecha inicio</td>';
+    echo '<td>Fecha Finalización</td>';
+    echo '</tr>';
+    foreach($datos->records as $conv){
+        
+        if($conv->fields->fecha_de_inicio>$inicio&&$conv->fields->fecha_de_inicio<$fin){
+        echo '<tr>';
+        echo '<td>'.$conv->fields->titulo.'</td>';
+        echo '<td>'.$conv->fields->clasificador.'</td>';
+        echo '<td>'.$conv->fields->tipo.'</td>';
+        $organismo=isset($conv->fields->organismo_gestor) ? $conv->fields->organismo_gestor : "";
+        echo '<td>'.$organismo.'</td>';
+        $plazas=isset($conv->fields->numeroplazas) ? $conv->fields->numeroplazas : "";
+        echo '<td>'.$plazas.'</td>';
+        $requisitos=isset($conv->fields->requisitos_necesarios) ? $conv->fields->requisitos_necesarios : "";
+        echo '<td>'.$requisitos.'</td>';
+        $municipio=isset($conv->fields->municipio) ? $conv->fields->municipio : "";
+        echo '<td>'.$municipio.'</td>';
+        echo '<td>'.$conv->fields->fecha_de_inicio.'</td>';
+        echo '<td>'.$conv->fields->fechafinalizacion.'</td>';
+        echo '</tr>';
+        }
+        
+        
+    }
+    echo '</table>';
+}
+
+/*
+* Registro de establecimientos farmacéuticos de Castilla y León
+* https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=registro-de-establecimientos-farmaceuticos-de-castilla-y-leon&q=&facet=nombre_comercial&facet=provincia&facet=localidad&facet=municipio
+*/
+if(strcmp($opc,"OP4")==0){
+    
+    $datos=json_decode(file_get_contents('https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=registro-de-establecimientos-farmaceuticos-de-castilla-y-leon&q=&facet=nombre_comercial&facet=provincia&facet=localidad&facet=municipio'));
+    
+   
+    echo '<table border="1">';
+    echo '<tr>';
+    echo '<td>Nombre Comercial</td>';
+    echo '<td>Calle</td>';
+    echo '<td>Número</td>';
+    echo '<td>Teléfono</td>';
+    echo '<td>Códgio postal</td>';
+    echo '<td>Número de registro</td>';
+    echo '<td>Localidad</td>';
+    echo '<td>Municipio</td>';
+    echo '</tr>';
+    foreach($datos->records as $farmacias){
+        
+       
+        echo '<tr>';
+        echo '<td>'.$farmacias->fields->nombre_comercial.'</td>';
+        echo '<td>'.$farmacias->fields->calle.'</td>';
+        echo '<td>'.$farmacias->fields->numero.'</td>';
+        echo '<td>'.$farmacias->fields->telefono.'</td>';
+        echo '<td>'.$farmacias->fields->codigo_postal.'</td>';
+        echo '<td>'.$farmacias->fields->num_reg.'</td>';
+        echo '<td>'.$farmacias->fields->localidad.'</td>';
+        echo '<td>'.$farmacias->fields->municipio.'</td>';
+        echo '</tr>';
+        
+        
+    }
+    echo '</table>';
 }
