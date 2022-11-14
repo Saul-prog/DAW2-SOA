@@ -1,9 +1,9 @@
 
 
-<form name="opc"method="post"action="consumidor.php">
+<form name="opc"method="get"action="consumidor.php">
 
        <h1>Opciones para visualizar:</h1> 
-       <select name="opciones" id="Provincia">
+       <select name="opciones" id="opciones">
             <option value="OP1">Ocupación por sector</option>
             <option value="OP2">Puntos de recarga de vehículos eléctricos</option>
             <option value="OP3">Convocatoria de empleo público dadas dos fechas</option>
@@ -15,13 +15,14 @@
 </form>
 
 <?php
-/*
-https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=puntos-de-recarga-del-vehiculo-electrico&q=&facet=nombre&facet=operador&facet=tipo
-*/
-$opc=isset($_POST["opciones"]) ? $_POST["opciones"] : "";
+/**
+ * Apartado Ocupación por sector
+ * https://servicios.ine.es/wstempus/js/es/DATOS_TABLA/3995?tip=AM
+ */
+$opc=isset($_GET["opciones"]) ? $_GET["opciones"] : "OP1";
 if(strcmp($opc,"OP1")==0){
 ?>
-    <form name="formulario"method="post"action="consumidor.php">
+    <form name="formulario"method="post"action="consumidor.php?opciones=OP1">
 
         Provincia: 
         <select name="Provincia" id="Provincia">
@@ -102,7 +103,6 @@ if(strcmp($opc,"OP1")==0){
     </form>
 
     <?php	
-    //<input type="text"name="anyo"value="2020"> <input type="text"name="Provincia"value="Zamora">
     $datos=json_decode(file_get_contents('https://servicios.ine.es/wstempus/js/es/DATOS_TABLA/3995?tip=AM'));
     $provincia=isset($_POST["Provincia"]) ? $_POST["Provincia"] : "Total Nacional";
     $anyo=isset($_POST["anyo"]) ? $_POST["anyo"] : 2020;
@@ -140,5 +140,60 @@ if(strcmp($opc,"OP1")==0){
         }
     }
 }
-?>
+/*
+* Apartado Puntos de recarga
+* https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=puntos-de-recarga-del-vehiculo-electrico&q=&facet=nombre&facet=operador&facet=tipo
+*/
+if(strcmp($opc,"OP2")==0){
+    $datos1=json_decode(file_get_contents('https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=puntos-de-recarga-del-vehiculo-electrico&q=&facet=nombre&facet=operador&facet=tipo    '));
+    echo '<table>';
+    echo '<tr>';
+    echo '<td>Nombre</td>';
+    echo '<td>Dirección</td>';
+    echo '<td>Operador</td>';
+    echo '<td>Número de conectores</td>';
+    echo '<td>Tipo de conector</td>';
+    echo '<td>DMS(grados y minutos decimales) (N,W)</td>';
+    echo '<td>DD(grados decimales)(N,W)</td>';
+    echo '</tr>';
+    foreach($datos1->records as $recarga){
+        echo '<tr>';
+        echo '<td>'.$recarga->fields->nombre.'</td>';
+        echo '<td>'.$recarga->fields->direccion.'</td>';
+        echo '<td>'.$recarga->fields->operador.'</td>';
+        echo '<td>'.$recarga->fields->no.'</td>';
+        echo '<td>'.$recarga->fields->tipo.'</td>';
+        echo '<td>'.$recarga->geometry->coordinates[0].' N<br>'.$recarga->geometry->coordinates[1].' W</td>';
+        echo '<td>'.$recarga->fields->dd[0].' N<br>'.$recarga->fields->dd[1].' W</td>';
+        echo '</tr>';
+        
+    }
+    echo '</table>';
+}
 
+/*
+* Convocatoria de empleo público dadas dos fechas
+* https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=convocatorias-de-empleo-publico&q=&sort=fechafinalizacion&facet=tipo&facet=organismo_gestor&facet=fechabocyl
+*/
+if(strcmp($opc,"OP3")==0){
+    ?>
+    <form name="formulario"method="post"action="consumidor.php?opciones=OP3">
+
+    Fecha Inicio      
+            <input type="date" id="start" name="inicial"
+                value="2021-06-01"
+                min="2006-09-25" max="2022-12-12">
+    Fecha Fin
+            <input type="date" id="start" name="final"
+                value="2021-06-01"
+                min="2006-09-25" max="2022-12-12">
+            <input type="submit"/>
+    </form>
+        <?php
+    $datos=json_decode(file_get_contents('https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=convocatorias-de-empleo-publico&q=&sort=fechafinalizacion&facet=tipo&facet=organismo_gestor&facet=fechabocyl'));
+    $inicio=isset($_POST["inicial"]) ? $_POST["inicial"] : "2022-12-12";
+    $fin=isset($_POST["final"]) ? $_POST["final"] : "2022-12-12";
+    echo '<p>Es el año ini:'.$inicio .'</p>';
+    echo '<p>Es el año fin:'.$fin .'</p>';
+    var_dump($datos);
+}
