@@ -1,8 +1,7 @@
 <?php
 /**
- * 
- * 
- * 
+ * Saúl Otero García
+ * Versión: 14/11/2022
  */?>
 <form name="opc"method="get"action="consumidor.php">
 
@@ -25,6 +24,7 @@
  */
 $opc=isset($_GET["opciones"]) ? $_GET["opciones"] : "OP1";
 if(strcmp($opc,"OP1")==0){
+    //Se hace un formulario con los valores posibles ya que algunas provincias son dificiles de escribir si no se saben
 ?>
     <form name="formulario"method="post"action="consumidor.php?opciones=OP1">
 
@@ -107,7 +107,9 @@ if(strcmp($opc,"OP1")==0){
     </form>
 
     <?php	
+    //Se toman los datos de la dirección web
     $datos=json_decode(file_get_contents('https://servicios.ine.es/wstempus/js/es/DATOS_TABLA/3995?tip=AM'));
+    //Se toman los datos por post y si no tienen valor se les pone uno predeterminado
     $provincia=isset($_POST["Provincia"]) ? $_POST["Provincia"] : "Total Nacional";
     $anyo=isset($_POST["anyo"]) ? $_POST["anyo"] : 2020;
     //Se comprueba que nos alga fuera de los añosa ceptados
@@ -117,15 +119,13 @@ if(strcmp($opc,"OP1")==0){
     if($anyo>2022){
         $anyo=2022;
     }
-    //if((strcmp("Albacete",$provincia)!=0)&&(strcmp("Albacete",$provincia)!=0)&&)
     echo '<p>Es la provincia:'.$provincia .'</p>';
     echo '<p>Es el año:'.$anyo .'</p>';
-    //Comprobar $datos
-    //var_dump($datos);
-
+    //Se recorrerre el array de objetos
     foreach($datos as $dato){
-        //var_dump($dato);
+        //Se recorre el array de los metadatos
         foreach($dato->MetaData as $metadato){
+            //Se genera una tabla con los valores válidos
             echo'<table>';
             if(strcmp($metadato->Nombre,$provincia)==0){
 
@@ -213,7 +213,7 @@ if(strcmp($opc,"OP3")==0){
     echo '<td>Fecha Finalización</td>';
     echo '</tr>';
     foreach($datos->records as $conv){
-        
+        //Se comprueba que los valores están dentro del intervalo dado
         if($conv->fields->fecha_de_inicio>$inicio&&$conv->fields->fecha_de_inicio<$fin){
         echo '<tr>';
         echo '<td>'.$conv->fields->titulo.'</td>';
