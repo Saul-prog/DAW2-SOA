@@ -1,5 +1,9 @@
-
-
+<?php
+/**
+ * 
+ * 
+ * 
+ */?>
 <form name="opc"method="get"action="consumidor.php">
 
        <h1>Opciones para visualizar:</h1> 
@@ -191,7 +195,7 @@ if(strcmp($opc,"OP3")==0){
     </form>
         <?php
     $datos=json_decode(file_get_contents('https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=convocatorias-de-empleo-publico&q=&sort=fechafinalizacion&facet=tipo&facet=organismo_gestor&facet=fechabocyl'));
-    $inicio=isset($_POST["inicial"]) ? $_POST["inicial"] : "2022-12-12";
+    $inicio=isset($_POST["inicial"]) ? $_POST["inicial"] : "2006-09-25";
     $fin=isset($_POST["final"]) ? $_POST["final"] : "2022-12-12";
     echo '<p>Es el año inicio:'.$inicio .'</p>';
     echo '<p>Es el año fin:'.$fin .'</p>';
@@ -261,10 +265,51 @@ if(strcmp($opc,"OP4")==0){
         echo '<td>'.$farmacias->fields->calle.'</td>';
         echo '<td>'.$farmacias->fields->numero.'</td>';
         echo '<td>'.$farmacias->fields->telefono.'</td>';
-        echo '<td>'.$farmacias->fields->codigo_postal.'</td>';
+        $cp=isset($farmacias->fields->codigo_postal) ? $farmacias->fields->codigo_postal : "";
+        echo '<td>'.$cp.'</td>';
         echo '<td>'.$farmacias->fields->num_reg.'</td>';
         echo '<td>'.$farmacias->fields->localidad.'</td>';
         echo '<td>'.$farmacias->fields->municipio.'</td>';
+        echo '</tr>';
+        
+        
+    }
+    echo '</table>';
+}
+/*
+* Registro de establecimientos farmacéuticos de Castilla y León
+* https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=tasa-mortalidad-covid-por-zonas-basicas-de-salud&q=&facet=fecha&facet=nombregerencia&facet=zbs_geo&facet=provincia&facet=municipio
+*/
+if(strcmp($opc,"OP5")==0){
+    
+    $datos=json_decode(file_get_contents('https://analisis.datosabiertos.jcyl.es/api/records/1.0/search/?dataset=tasa-mortalidad-covid-por-zonas-basicas-de-salud&q=&facet=fecha&facet=nombregerencia&facet=zbs_geo&facet=provincia&facet=municipio'));
+    
+   
+    echo '<table border="1">';
+    echo '<tr>';
+    echo '<td>Fecha</td>';
+    echo '<td>Gerencia</td>';
+    echo '<td>Nombre Gerencia</td>';
+    echo '<td>CS</td>';
+    echo '<td>Centro</td>';
+    echo '<td>Fallecidos</td>';
+    echo '<td>ZBS_Geo</td>';
+    echo '<td>Provincia</td>';
+    echo '<td>Municipio</td>';
+    echo '</tr>';
+    foreach($datos->records as $hospital){
+        
+       
+        echo '<tr>';
+        echo '<td>'.$hospital->fields->fecha.'</td>';
+        echo '<td>'.$hospital->fields->gerencia.'</td>';
+        echo '<td>'.$hospital->fields->nombregerencia.'</td>';
+        echo '<td>'.$hospital->fields->cs.'</td>';
+        echo '<td>'.$hospital->fields->centro.'</td>';
+        echo '<td>'.$hospital->fields->fallecidos.'</td>';
+        echo '<td>'.$hospital->fields->zbs_geo.'</td>';
+        echo '<td>'.$hospital->fields->provincia.'</td>';
+        echo '<td>'.$hospital->fields->municipio.'</td>';
         echo '</tr>';
         
         
