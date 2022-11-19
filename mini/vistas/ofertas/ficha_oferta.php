@@ -15,15 +15,16 @@ if ($oferta->precio < 20.00) {
 ?>
 <div class="articulo">
   <div class="caja-sombra">
-    <?php echo $oferta->articulo->referencia;?><br/>
-    <?php //echo $oferta->$refART;?><br/>
-    <?php echo htmlentities( $oferta->articulo->texto);?><br/>
+    <?php echo $oferta->refArt;?><br/>
+    <?php echo htmlentities( $oferta->notas);?><br/>
   <div class="der">Precio: <?php echo $fmtPrecio;?>€</div>
     <?php if ($cesta) {
-      $url= '?'.http_build_query( array('a'=>'catalogo.add', 'ref'=>$oferta->articulo->referencia, 'p'=>$pagina));
+      $url= '?'.http_build_query( array('a'=>'ofertas.add', 'ref'=>$oferta->refArt, 'p'=>$pagina));
     echo '<a href="'.$url.'">';
     echo '<img src="recursos/cesta.png" title="Agregar a la cesta" alt="Agregar a la cesta" width="32px" height="auto"/>';
     echo '</a>';
-  }// ?>
+  }//
+ ?>
+
   </div>
 </div>

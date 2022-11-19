@@ -90,17 +90,15 @@ class ofertas extends modeloDAO
   
   //-------------------------------------------------------------------------
   //Cargar la oferta con el modelo de datos del articulo que tiene asociado.
-  public function cargarArticulo()
+      public function cargarOferta()
   {
     //Si el articulo no esta cargado, o si lo esta, hay referencia en la oferta
     //y las referencias no coinciden entre si, se intenta cargar.
-    if (($this->articulo === null) || 
-          (($this->articulo !== null) && !empty($this->refArt) 
-              && ($this->articulo->referencia != $this->refArt))) {
-      //Crear la instancia nueva y cargarla, y si falla, dejarla nula.
-      $this->articulo= new articulo;
-      if (!$this->articulo->cargar( $this->refArt)) $this->articulo= null;
-    }//if
+    if (($this->articulo === null) || (($this->articulo !== null) && !empty($this->refArt) && ($this->articulo->referencia != $this->refArt))) {
+                  //Crear la instancia nueva y cargarla, y si falla, dejarla nula.
+                  $this->articulo= new ofertas;
+                  if (!$this->articulo->cargar( $this->refArt)) $this->articulo= null;
+            }//if
     return ($this->articulo !== null);
   }//cargarArticulo
   
@@ -109,7 +107,7 @@ class ofertas extends modeloDAO
   public function carga($filtroIDs){
     $res=parent::cargar($filtroIDs);
     //if($res) $res=$this->$cargaArticulo();//Si no va bien se devuelve
-    if($res) $this->$cargaArticulo();
+    if($res) $this->cargarArticulo();
 
     return $res;
   }

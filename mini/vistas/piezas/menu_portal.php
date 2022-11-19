@@ -15,6 +15,8 @@ $opciones= array(
   array( 'titulo' => 'Inicio', 'url'=>'?a=inicio'),
 array( 'titulo' => 'Clientes', 'url'=>'?a=clientes', 'activo'=>true),
   array( 'titulo' => 'Articulos', 'url'=>'?a=articulos'),
+    array( 'titulo' => 'Ofertas', 'url'=>'?a=ofertas'),
+    array( 'titulo' => 'Catalogo', 'url'=>'?a=catalogo'),
   array( 'titulo' => 'Pedidos', 'url'=>'?a=pedidos')
 );/*---------*/
 ?>

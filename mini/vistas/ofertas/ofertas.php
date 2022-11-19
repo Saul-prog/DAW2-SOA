@@ -29,7 +29,7 @@ if (is_array($registros)) {
   $modelo= new ofertas;
   foreach($registros as $indice => $registro) {
     $modelo->llenar( $registro);
-    $modelo->cargarArticulo();
+    $modelo->cargarOferta();
     //Opcion 1: Siguiendo el framework
     vista::generarParcial( 'ficha_oferta', array( 'oferta'=>$modelo, 'pagina'=>$pagina));
     
@@ -62,7 +62,7 @@ if (is_array($registros)) {
 <div class="salto"></div>
 
 <?php //Generar el pie de la tabla con la informacion y paginador
-vista::generarPieza( 'paginador', array( 'url'=>array('a'=>'catalogo'), 'total'=>$total, 'pagina'=>$pagina, 'lineas'=>$lineas));
+vista::generarPieza( 'paginador', array( 'url'=>array('a'=>'ofertas'), 'total'=>$total, 'pagina'=>$pagina, 'lineas'=>$lineas));
 ?>
 
 <div class="salto"></div>
