@@ -56,7 +56,7 @@ class controlador_catalogo extends controlador
     */
     $cesta= Cesta::instancia_de_sesion();
     //--$cesta= new Cesta(); $cesta->cargar_de_sesion();
-    $cesta->poner( $id);
+    $cesta->poner( $id,0,1);
     $cesta->guardar_en_sesion();
     
     //Dar una respuesta

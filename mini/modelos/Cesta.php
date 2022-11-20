@@ -33,17 +33,24 @@ class Cesta
   //2. Array con elementos ('id' => cantidad)
   //3. Array con elementos ('id' => array(cantidad, Articulo))
   //*** La implementacion actual sigue la idea 2.
-  protected $datos= array();
+  protected $datos= array('id'=>array('cantidad'=>0,'oferta'=>0));
   
   
   //Añadir articulo a la cesta con cantidad 1 o N unidades.
-  public function poner( $id, $cantidad=1)
+  public function poner( $id,$oferta=0,$cantidad=1)
   {
     //1. Decidir si sumar o insertar dato.
-    if (isset( $this->datos[$id]))
-      $this->datos[$id]= $cantidad;
-    else
-      $this->datos[$id]= $cantidad;
+    if (isset( $this->datos[$id]['oferta'])){
+        //$this->datos[$id]= $cantidad;
+        $this->datos[$id]['cantidad']+=$cantidad;
+        if($this->datos[$id]['oferta']==0){
+            $this->datos[$id]['oferta']=$oferta;
+        }
+    }else{
+        $this->datos[$id]['cantidad']=$cantidad;
+        $this->datos[$id]['oferta']=$oferta;
+    }
+      //$this->datos[$id]= $cantidad;
     
     //2. Insertar dato vacio primero.
     //if (!isset( $this->datos[$id])) $this->datos[$id]= 0;
