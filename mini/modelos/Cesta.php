@@ -27,6 +27,7 @@
 */
 class Cesta
 {
+
   //Datos de articulos en la cesta.
   //1. Array con elementos array('id'=>xxx, 'cantidad'=>xxx)
   //2. Array con elementos ('id' => cantidad)
@@ -40,7 +41,7 @@ class Cesta
   {
     //1. Decidir si sumar o insertar dato.
     if (isset( $this->datos[$id]))
-      $this->datos[$id]+= $cantidad;
+      $this->datos[$id]= $cantidad;
     else
       $this->datos[$id]= $cantidad;
     
@@ -66,7 +67,9 @@ class Cesta
     $this->datos= array();
     //--$this->datos= [];
   }//vaciar
-  
+
+
+
   //Obtener lista de articulos "en bruto" (Id.Articulo, Cantidad)
   public function contenido()
   {
