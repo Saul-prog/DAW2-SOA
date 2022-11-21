@@ -18,13 +18,11 @@ depurar( array(
 //-----*/
 ?>
 <tbody class="ficha">
-<?php if ($modelo !== null) { ?>
-    <tr><th>Ref.</th><td><?php echo html::encode( $modelo->referencia);?></td></tr>
-    <tr><th>Precio</th><td><?php echo sprintf( '%0.2f', $modelo->precio);?></td></tr>
-    <tr><th>%IVA</th><td><?php echo sprintf( '%0.2f', $modelo->iva);?></td></tr>
-    <tr><th>Cantidad</th><td><?php echo html::encode( $modelo->cantidad);?></td></tr>
-    <tr><th>Precio</th><td><?php echo html::encode( $modelo->cantidad*$modelo->precio);?></td></tr>
-<?php } else { ?>
-    <tr><th>Error</th><td><?php echo $error;?></td></tr>
-<?php }//if ?>
+<?php if ($registro !== null) { ?>
+    <tr><th>Ref.</th><td><?php echo html::encode( $registro);?></td></tr>
+    <tr><th>Precio</th><td><?php echo sprintf( 'Precio');?></td></tr>
+    <tr><th>%IVA</th><td><?php echo sprintf( 'IVA');?></td></tr>
+    <tr><th>Cantidad</th><td><?php echo html::encode( $registro['cantidad']);?></td></tr>
+    <tr><th>Precio</th><td><?php echo html::encode( 'Precio Final');?></td></tr>
+<?php } ?>
 </tbody>

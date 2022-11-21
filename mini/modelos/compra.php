@@ -64,19 +64,17 @@ class compra extends modeloDAO
         return $sql;
     }//sqlListar
 
-    public function rellenar($id){
-        $datos=basedatos::buscarUno('ofertas','refArt',$id);
-        if($datos===NULL){
-            $datos=basedatos::buscarUno('articulos','referencia',$id);
-            $this->referencia=$datos->referencia;
-            $esOferta=False;
-            $precio=$datos->precio;
-            $iva=$datos->iva;
-        }else {
-            $this->referencia = $datos->refArt;
+    public function rellenar($id,$esOferta=0){
+
+        $datos = basedatos::buscarUno('articulos', 'referencia', $id);
+        $this->referencia = $datos->referencia;
+        $esOferta = False;
+        $precio = $datos->precio;
+        $iva = $datos->iva;
+        if($esOferta){
+            $datos=basedatos::buscarUno('ofertas','refArt',$id);
             $esOferta = True;
             $precio = $datos->precio;
-            $iva = 21;
         }
     }
 

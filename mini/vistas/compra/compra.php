@@ -29,9 +29,11 @@ depurar( array(
 if (is_array($registros)) {
     $modelo= new compra;
     $cantidad_final=0;
-    foreach($registros as $indice => $cantidad) {
-        $modelo->rellenar( $indice);
-        $modelo->cantidad=$cantidad;
+    foreach($registros as $indice => $datos) {
+        var_dump($datos);
+        echo '<br>';
+        $modelo->rellenar($indice,$datos);
+        $modelo->cantidad=$datos['cantidad'];
         //Opcion 1: Siguiendo el framework
         vista::generarParcial( 'ficha_compra', array( 'compra'=>$modelo, 'pagina'=>$pagina));
 
@@ -40,9 +42,9 @@ if (is_array($registros)) {
 
         //Opcion 3: aqui a mano.
         //echo '<div>'; print_r( $modelo); echo '</div>';
-        $cantidad_final= $cantidad_final+($modelo->precio*$cantidad);
+        $cantidad_final= $cantidad_final+($datos['cantidad']);
     }//foreach
-        echo '<div> <H2>Precio total: '.$cantidad_final.'</H2>';
+        echo '<div> <H2>Cantidad total: '.$cantidad_final.'</H2>';
 } else {
     echo 'No hay datos.';
 }

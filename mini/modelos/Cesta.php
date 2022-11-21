@@ -63,8 +63,8 @@ class Cesta
   {
     //$this->poner( $id, -$cantidad);
     if (isset( $this->datos[$id])) {
-      $this->datos[$id]-= $cantidad;
-      if ($this->datos[$id] <= 0) unset( $this->datos[$id]);
+      $this->datos[$id]['cantidad']-= $cantidad;
+      if ($this->datos[$id]['cantidad'] <= 0) unset( $this->datos[$id]);
     }
   }//quitar
   

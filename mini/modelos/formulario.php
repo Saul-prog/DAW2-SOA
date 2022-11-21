@@ -10,7 +10,7 @@ class formulario extends modeloDAO{
 
     public static function get(){
         if (isset($_SESSION[$variable])) $res= $_SESSION[$variable];
-array()
+array();
 
     }
 
