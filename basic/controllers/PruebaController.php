@@ -5,7 +5,7 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 use app\models\ContactForm;
-use app\models\Articulo;
+use app\models\ArticuloPruebas;
 class PruebaController extends Controller
 {
   
@@ -35,9 +35,12 @@ class PruebaController extends Controller
     }
 
     public function actionArticulo(){
-        $modelo=new Articulo();
+        $modelo=new ArticuloPruebas();
         $lista=$modelo->attributes();
         $html='<pre>'.print_r($lista,true).'</pre>';
-        print_r($lista);
+        $modelo->precio=100;
+        $modelo->iva=10;
+        $modelo->validate();
+        $html='<pre>Errores:'.print_r($modelo->getErrors(),true).'</pre>';
     }
 }

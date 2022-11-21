@@ -56,10 +56,10 @@ $config = [
     'controllerMap'=>[
         'demo'=> 'app\controllers\PruebaController',
     ],
-    */
+
     'sourceLanguage'=>'es-ES',
     'language'=>'it',
-
+*/
 
     'params' => $params,
 ];

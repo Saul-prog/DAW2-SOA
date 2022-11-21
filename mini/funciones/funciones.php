@@ -8,3 +8,4 @@ require_once( 'controladores.php');
 require_once( 'vistas.php');
 require_once( 'modelos.php');
 require_once( 'aplicacion.php');
+require_once( 'formularios.php');
