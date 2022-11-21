@@ -63,6 +63,10 @@ class PedidoLinea extends \yii\db\ActiveRecord
             'cuotaIva' => Yii::t('app', 'Cuota Iva'),
         ];
     }
+    //Atributo Virtual "ImporteTotal"
+    public function getImporteTotal(){
+        return $this->precio*$this->precio*(1+$this->iva/100);
+    }
 
     /**
      * {@inheritdoc}

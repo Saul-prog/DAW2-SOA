@@ -6,6 +6,8 @@ use Yii;
 use yii\web\Controller;
 use app\models\ContactForm;
 use app\models\ArticuloPruebas;
+use app\models\Pedidos;
+use app\models\Clientes;
 class PruebaController extends Controller
 {
   
@@ -43,4 +45,21 @@ class PruebaController extends Controller
         $modelo->validate();
         $html='<pre>Errores:'.print_r($modelo->getErrors(),true).'</pre>';
     }
+
+
+    public function actionPedido(){
+        $html='';
+        $modelo=Pedidos::find()->limit(1)->one();
+        $cliente=$modelo->cliente;
+        //$query=$modelo->getLineas();
+        //$lineas=$modelo->lineas;
+        $html.='<pre>'.print_r($modelo->attributes,true).'</pre>';
+        $html.='<pre>Clientes: '.print_r($cliente->attributes,true).'</pre>';
+        $html.='<pre>Lineas: '.print_r(count($modelo->lineas),true).'</pre>';
+        $html.='<pre>Precio total: '.print_r($modelo->ImporteTotal,true).'</pre>';
+        //echo $html;
+        return $this->renderContent($html);
+    }
+
+
 }

@@ -38,4 +38,11 @@ class ArticuloPruebas extends \yii\db\ActiveRecord
             //
         ];
     }
+    public function getPrecioConIva(){
+        return $this->precio*$this->iva/100;
+    }
+    public function setPrecioConIva($valor){
+        $this->precio=$valor/($this->iva/100);
+    }
+
 }
