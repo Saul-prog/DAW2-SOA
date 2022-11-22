@@ -69,4 +69,14 @@ class Clientes extends \yii\db\ActiveRecord
     {
         return new ClientesQuery(get_called_class());
     }
+
+    //atributo virtual pedidos dentro de cliente
+    public function getPedidos(){
+        //yii\db\ActiveQuery    Nombre de la tablaOrigen, Lo que relaciona las tablas [keyOrigen=>keyDestino,....]
+        return  $this->hasMany(Pedidos::class,['refCli'=>'referencia'])->inverseOf('cliente');
+    }
+    public function getNumPedidos(){
+        //Muy lento, buscar otra función
+        return  count($this->pedidos);
+    }
 }

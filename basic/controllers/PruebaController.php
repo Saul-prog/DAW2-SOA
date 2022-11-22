@@ -53,9 +53,16 @@ class PruebaController extends Controller
         $cliente=$modelo->cliente;
         //$query=$modelo->getLineas();
         //$lineas=$modelo->lineas;
+        $pedidos=$cliente->pedidos;
+
+        foreach ($pedidos as $p){
+            $c=$p->cliente;
+        }
         $html.='<pre>'.print_r($modelo->attributes,true).'</pre>';
         $html.='<pre>Clientes: '.print_r($cliente->attributes,true).'</pre>';
         $html.='<pre>Lineas: '.print_r(count($modelo->lineas),true).'</pre>';
+        $html.='<hr>';
+        $html.='<pre>Pedidos: '.print_r(count($pedidos),true).'</pre>';
         $html.='<pre>Precio total: '.print_r($modelo->ImporteTotal,true).'</pre>';
         //echo $html;
         return $this->renderContent($html);

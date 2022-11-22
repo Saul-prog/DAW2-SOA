@@ -66,7 +66,7 @@ class Pedidos extends \yii\db\ActiveRecord
 
     public function getCliente(){
         //yii\db\ActiveQuery    Nombre de la tablaOrigen, Lo que relaciona las tablas [keyOrigen=>keyDestino,....]
-        return  $this->hasOne(Clientes::class,['referencia'=>'refCli']);
+        return  $this->hasOne(Clientes::class,['referencia'=>'refCli'])->inverseOf('pedidos');
     }
 
     public function getImporteTotal(){
