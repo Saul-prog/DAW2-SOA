@@ -15,17 +15,15 @@ depurar( array(
   'modelo' => $modelo,
   'error' => $error,
 ));
-//-----*/
-?>
-    <div class="articulo">
-        <div class="caja-sombra">
+//-----*/?>
+<div class="articulo">
+      <div class="caja-sombra">
             <?php echo $modelo->referencia;?><br/>
-            <div class="der">
-                Precio: <?php echo $modelo->precio;?>€<br>
-            </div>
-            IVA:    <?php echo $modelo->iva;?>
-            <br>
-            Precio total: <?php echo $modelo->precio*$datos['cantidad'];?>
-        </div>
+          <div class="der">
+            Precio: <?php echo $modelo->precio;?>€<br>
+          </div>
+          IVA:    <?php echo $modelo->iva;?>
+          <br>
+          Precio total: <?php echo $modelo->precio*$datos['cantidad'];?>
+      </div>
     </div>
-<?php

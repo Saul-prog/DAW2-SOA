@@ -13,6 +13,7 @@ class controlador_compra extends controlador
     {
         //----------
         //Ejecutar accio
+        $pagina=1;
         $cesta= Cesta::instancia_de_sesion();
         $registros= $cesta->contenido();
         $total=$cesta->total_articulos();
@@ -22,8 +23,8 @@ class controlador_compra extends controlador
         //Dar una respuesta
         //vista::$plantilla= 'publica.php';
         vista::generarPagina( 'compra', array(
-            'pagina'=>1,
-            'lineas'=>1,
+            'pagina'=>$pagina,
+            'lineas'=>$total,
             'total'=>$total,
             'registros'=>$registros,
         ));

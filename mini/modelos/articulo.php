@@ -71,7 +71,7 @@ class articulo extends modeloDAO
     public function rellenar($id,$esOferta=0){
         $sql='SELECT * FROM articulos WHERE  referencia = "'.$id.'"';
         $datos = basedatos::obtenerUno($sql);
-        $this->referencia=$datos['referencia'];
+        $this->referencia=$id;
         $this->precio=$datos['precio'];
         $this->iva=$datos['iva'];
 
