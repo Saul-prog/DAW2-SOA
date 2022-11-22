@@ -33,7 +33,7 @@ if (is_array($registros)) {
     vista::generarPieza( 'ficha_articulo', array( 'articulo'=>$modelo, 'pagina'=>$pagina));
     
     //Opcion 2: incluir a mano.
-    //include( 'ficha_articulo.php');
+    //include('ficha_compra.php');
     
     //Opcion 3: aqui a mano.
     //echo '<div>'; print_r( $modelo); echo '</div>'; 

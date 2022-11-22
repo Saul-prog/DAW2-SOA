@@ -64,7 +64,26 @@ class articulo extends modeloDAO
     $sql= 'SELECT * FROM articulos ORDER BY '.$orden;
     return $sql;
   }//sqlListar
-  
+
+    //Se obtiene un artículo y si es oferte se le cambia el precio
+    //-$id es la referencia del artículo
+    //-$esOferta indica si se debe buscar el nuevo precio en la tabla ofertas
+    public function rellenar($id,$esOferta=0){
+        $sql='SELECT * FROM articulos WHERE  referencia = "'.$id.'"';
+        $datos = basedatos::obtenerUno($sql);
+        $this->referencia=$datos['referencia'];
+        $this->precio=$datos['precio'];
+        $this->iva=$datos['iva'];
+
+        if($esOferta){
+            $sql='SELECT precio FROM ofertas WHERE  refART = "'.$id.'"';
+            $datos=basedatos::obtenerUno($sql);
+            $this->precio=$datos['precio'];
+        }
+
+
+        return $datos;
+    }
   
   //-------------------------------------------------------------------------
   //-------------------------------------------------------------------------

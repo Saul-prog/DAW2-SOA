@@ -17,12 +17,15 @@ depurar( array(
 ));
 //-----*/
 ?>
-<tbody class="ficha">
-<?php if ($registro !== null) { ?>
-    <tr><th>Ref.</th><td><?php echo html::encode( $registro);?></td></tr>
-    <tr><th>Precio</th><td><?php echo sprintf( 'Precio');?></td></tr>
-    <tr><th>%IVA</th><td><?php echo sprintf( 'IVA');?></td></tr>
-    <tr><th>Cantidad</th><td><?php echo html::encode( $registro['cantidad']);?></td></tr>
-    <tr><th>Precio</th><td><?php echo html::encode( 'Precio Final');?></td></tr>
-<?php } ?>
-</tbody>
+    <div class="articulo">
+        <div class="caja-sombra">
+            <?php echo $modelo->referencia;?><br/>
+            <div class="der">
+                Precio: <?php echo $modelo->precio;?>€<br>
+            </div>
+            IVA:    <?php echo $modelo->iva;?>
+            <br>
+            Precio total: <?php echo $modelo->precio*$datos['cantidad'];?>
+        </div>
+    </div>
+<?php

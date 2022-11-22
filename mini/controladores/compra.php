@@ -16,7 +16,7 @@ class controlador_compra extends controlador
         $cesta= Cesta::instancia_de_sesion();
         $registros= $cesta->contenido();
         $total=$cesta->total_articulos();
-        var_dump($registros);
+        //var_dump($registros);
        // $lineas=$total=$cesta->total_articulos();//Se va a mostrar todo de una sin importar la cantidad
         //----------
         //Dar una respuesta

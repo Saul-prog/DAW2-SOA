@@ -136,18 +136,6 @@ class basedatos
     return $res;
   }//contar
 
-    public static function buscarUno($tabla,$campo,$id){
-        if (self::conectar()) {
-            if (self::$depurar) log::mensajeLin( __METHOD__);
-            $peticion= self::$conexion->prepare("SELECT * FROM ? WHERE ? = ? ");
-            $peticion->bind_param("sss",$tabla,$campo,$id);
-            $peticion->execute();
-            $rs= $peticion->get_result();
-            $res= $rs->fetch_assoc();
-        }//if
-        return $res;
-      return $res;
-    }
 
 
 
