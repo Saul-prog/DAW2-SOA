@@ -37,30 +37,27 @@ if (is_array($registros)) {
         $modelo->rellenar($indice,$datos['oferta']);
         //var_dump($modelo);
         //Opcion 1: Siguiendo el framework
-        //vista::generarParcial( 'ficha_compra', array( 'articulo'=>$modelo, 'pagina'=>$pagina));
+        vista::generarParcial( 'ficha_compra_mod', array( 'articulo'=>$modelo,'datos'=>$datos, 'pagina'=>$pagina));
         ?>
-        <div class="articulo">
-          <div class="caja-sombra">
-                <?php echo $modelo->referencia;?><br/>
-              <div class="der">
-                Precio: <?php echo $modelo->precio;?>€<br>
-              </div>
-              IVA:    <?php echo $modelo->iva;?>
-              <br>
-              Precio total: <?php echo $modelo->precio*$datos['cantidad'];?>
-          </div>
-        </div>
+
         <?php
+
         //Opcion 2: incluir a mano.
         //include( 'ficha_oferta.php');
 
         //Opcion 3: aqui a mano.
         //echo '<div>'; print_r( $modelo); echo '</div>';
+
+
         $cantidad_final= $cantidad_final+($datos['cantidad']);
         $precio_final+=$datos['cantidad']*$modelo->precio;
     }//foreach
         echo '<div> <H2>Cantidad total: '.$cantidad_final.' Unidades</H2>';
         echo '<div> <H2>Precio total: '.$precio_final.'€</H2>';
+
+    vista::generarPieza( 'boton_accion', array( 'texto'=>'Vaciar', 'icono'=>'delete.png',
+        'activo'=>false, 'url'=>array('a'=>'compra.clear'),
+        'submit'=>true));
 } else {
     echo 'No hay datos.';
 }

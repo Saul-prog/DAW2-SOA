@@ -57,17 +57,25 @@ class Cesta
     //$this->datos[$id]+= $cantidad;
     
   }//poner
-  
-  //Quitar articulo de la cesta por completo o quitar N unidades.
+  //Quita 1 articulo de la cesta por completo o quitar N unidades.
   public function quitar( $id, $cantidad=1)
   {
     //$this->poner( $id, -$cantidad);
+
     if (isset( $this->datos[$id])) {
       $this->datos[$id]['cantidad']-= $cantidad;
+
       if ($this->datos[$id]['cantidad'] <= 0) unset( $this->datos[$id]);
     }
   }//quitar
-  
+ public function eliminar( $id){
+     if (isset( $this->datos[$id])){
+         unset( $this->datos[$id]);
+     }
+ }
+
+
+
   //Vaciar cesta.
   public function vaciar()
   {
@@ -75,6 +83,12 @@ class Cesta
     //--$this->datos= [];
   }//vaciar
 
+    //Setear cesta
+    public function set($id,$cantidad){
+
+        if (isset( $this->datos[$id]))
+            $this->datos[$id]['cantidad']= $cantidad;
+    }
 
 
   //Obtener lista de articulos "en bruto" (Id.Articulo, Cantidad)

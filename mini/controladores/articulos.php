@@ -103,7 +103,7 @@ class controlador_articulos extends controlador
     //--if ($bien) {
     //--  vista::redirigir( array('articulos'), array('p'=>$pagina));
     //--} else {
-      vista::generarPagina( 'editar', array( 
+      vista::generarPagina( 'editar', array(
         'modelo'=>$modelo,
         'error'=>$error,
         'pagina'=>$pagina,

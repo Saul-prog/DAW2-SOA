@@ -78,6 +78,7 @@ class articulo extends modeloDAO
         if($esOferta){
             $sql='SELECT precio FROM ofertas WHERE  refART = "'.$id.'"';
             $datos=basedatos::obtenerUno($sql);
+            if($datos!==NULL)
             $this->precio=$datos['precio'];
         }
 
