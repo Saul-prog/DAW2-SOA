@@ -68,14 +68,14 @@ class controlador_compra extends controlador
     }
 
     public function accion_set(){
-        $id= (isset($_GET['ref']) ? $_GET['ref'] : null);
+        $id= (isset($_POST['ref']) ? $_POST['ref'] : null);
         $cantidad=(isset($_POST['cantidad']) ? $_POST['cantidad'] : 1);
         var_dump($id);
         var_dump($cantidad);
         $cesta=Cesta::instancia_de_sesion();
         $cesta->set($id,$cantidad);
         $cesta->guardar_en_sesion();
-        //vista::redirigir( '', array('a'=>'compra.ver'));
+        vista::redirigir( '', array('a'=>'compra.ver'));
     }
 
 }

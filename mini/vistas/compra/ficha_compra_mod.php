@@ -53,14 +53,11 @@ depurar( array(
 
 
         ?>
-        <form action="" method="post">
+        <form action="?a=compra.set" method="post">
         <input type="text" name="cantidad" id="cantidad" value="1"/>
-
-        <?php
-        vista::generarPieza( 'boton_accion', array( 'texto'=>'Añadir', 'icono'=>'plus.png',
-            'activo'=>false, 'url'=>array('a'=>'compra.set', 'ref'=>$articulo->referencia, 'p'=>$pagina),
-            'submit'=>true));
-        ?>
+        <input type="hidden" name="ref" id="ref" value="<?php echo $articulo->referencia?>"/>
+        <input type="hidden" name="pagina" id="pagina" value="<?php echo $pagina?>"/>
+        <input type="submit" value="Submit">
         </form>
         <hr>
 
