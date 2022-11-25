@@ -77,6 +77,12 @@ class compra extends modeloDAO
         return $datos;
     }
 
+    /******Falta implementar guardar en base de datos hasta que se gestioneen los rolesx/
+    public function guardar(){
+        $sesion= new sesion;
+        $sesion->get('usuario');
+
+    }*/
     //-------------------------------------------------------------------------
     //-------------------------------------------------------------------------
 

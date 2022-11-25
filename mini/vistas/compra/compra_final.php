@@ -23,7 +23,7 @@ depurar( array(
 
 //echo $local;
 ?>
-    <h1>Cesta de la compra</h1>
+    <h1>Cesta de la compra Final</h1>
     <div class="hoja">
 <?php //Generar los registros obtenidos de la compra.
 if (is_array($registros)) {
@@ -37,7 +37,7 @@ if (is_array($registros)) {
         $modelo->rellenar($indice,$datos['oferta']);
         //var_dump($modelo);
         //Opcion 1: Siguiendo el framework
-        vista::generarParcial( 'ficha_compra_mod', array( 'articulo'=>$modelo,'datos'=>$datos, 'pagina'=>$pagina));
+        vista::generarParcial( 'ficha_compra_final', array( 'articulo'=>$modelo,'datos'=>$datos, 'pagina'=>$pagina));
         ?>
 
         <?php
@@ -52,18 +52,20 @@ if (is_array($registros)) {
         $cantidad_final= $cantidad_final+($datos['cantidad']);
         $precio_final+=$datos['cantidad']*$modelo->precio;
     }//foreach
-        echo '<div> <H2>Cantidad total: '.$cantidad_final.' Unidades</H2>';
-        echo '<div> <H2>Precio total: '.$precio_final.'€</H2>';
-    if($cantidad_final>0) {
-        vista::generarPieza('boton_accion', array('texto' => 'Vaciar', 'icono' => 'delete.png',
-            'activo' => false, 'url' => array('a' => 'compra.clear'),
-            'submit' => true));
-        echo '<div><H1>Comprar</H1>';
-        vista::generarPieza('boton_accion', array('texto' => 'Comprar', 'icono' => 'cart.png',
-            'activo' => false, 'url' => array('a' => 'compra.compra'),
-            'submit' => true));
+    echo '<div> <H2>Cantidad total: '.$cantidad_final.' Unidades</H2>';
+    echo '<div> <H2>Precio total: '.$precio_final.'€</H2>';
+
+    if($cantidad_final>1){
+        echo '<div>';
+        vista::generarPieza( 'boton_accion', array( 'texto'=>'Volver', 'icono'=>'return.png',
+            'activo'=>false, 'url'=>array('a'=>'compra.ver'),
+            'submit'=>true));
+        vista::generarPieza( 'boton_accion', array( 'texto'=>'Pagar', 'icono'=>'cart.png',
+            'activo'=>false, 'url'=>array('a'=>'compra.ver'),
+            'submit'=>true));
         echo '<div>';
     }
+
 } else {
     echo 'No hay datos.';
 }

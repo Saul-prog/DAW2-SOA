@@ -68,14 +68,35 @@ class controlador_compra extends controlador
     }
 
     public function accion_set(){
-        $id= (isset($_POST['ref']) ? $_POST['ref'] : null);
+        $id= (isset($_POST['ref']) ? $_POST['ref'] : NULL);
         $cantidad=(isset($_POST['cantidad']) ? $_POST['cantidad'] : 1);
-        var_dump($id);
-        var_dump($cantidad);
-        $cesta=Cesta::instancia_de_sesion();
-        $cesta->set($id,$cantidad);
-        $cesta->guardar_en_sesion();
+        if($cantidad>=1&&$id!==NULL){
+            $cesta=Cesta::instancia_de_sesion();
+            $cesta->set($id,$cantidad);
+            $cesta->guardar_en_sesion();
+        }
         vista::redirigir( '', array('a'=>'compra.ver'));
     }
 
+    public function accion_compra(){
+
+        $cesta= Cesta::instancia_de_sesion();
+        $registros= $cesta->contenido();
+        $total=$cesta->total_articulos();
+        //var_dump($registros);
+        // $lineas=$total=$cesta->total_articulos();//Se va a mostrar todo de una sin importar la cantidad
+        //----------
+        //Dar una respuesta
+        //vista::$plantilla= 'publica.php';
+        vista::generarPagina( 'compra_final', array(
+            'pagina'=>$pagina=1,
+            'lineas'=>$total,
+            'total'=>$total,
+            'registros'=>$registros,
+        ));
+    }
+
+    public function accion_confirmar(){
+
+    }
 }

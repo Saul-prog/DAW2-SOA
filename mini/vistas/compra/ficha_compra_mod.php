@@ -56,8 +56,7 @@ depurar( array(
         <form action="?a=compra.set" method="post">
         <input type="text" name="cantidad" id="cantidad" value="1"/>
         <input type="hidden" name="ref" id="ref" value="<?php echo $articulo->referencia?>"/>
-        <input type="hidden" name="pagina" id="pagina" value="<?php echo $pagina?>"/>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Añadir">
         </form>
         <hr>
 

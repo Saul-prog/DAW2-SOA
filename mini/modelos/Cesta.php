@@ -120,8 +120,11 @@ class Cesta
       $cantidad= next( $this->datos);
     }
     */
-    
-    return array_sum( $this->datos);
+    $unidades=0;
+    foreach ($this->datos as $dato){
+        $unidades+=$dato['cantidad'];
+    }
+    return $unidades;
   }//total_unidades
   
   
