@@ -22,7 +22,7 @@ depurar( array(
     <div class="hoja">
         <table>
             <?php //Generar el cuerpo de la tabla con el formulario de articulo.
-            vista::generarParcial( 'usuario_formulario', array( 'modelo'=>$modelo, 'error'=>$error));
+            vista::generarParcial( 'usuarios_formulario', array( 'modelo'=>$modelo, 'error'=>$error));
             ?>
             <tfoot>
             <tr>
@@ -32,7 +32,7 @@ depurar( array(
                         <?php //Generar el pie de la tabla con las acciones.
                         //if (tiene_permiso( 'articulos.editar')) {
                         vista::generarPieza( 'boton_accion', array( 'texto'=>'Guardar', 'icono'=>'guardar.png',
-                            'activo'=>false, 'url'=>array('a'=>'usuario.editar', 'id'=>$modelo->id, 'p'=>$pagina),
+                            'activo'=>false, 'url'=>array('a'=>'usuarios.editar', 'id'=>$modelo->id, 'p'=>$pagina),
                             'submit'=>true));
                         //}//if "permiso"
 
