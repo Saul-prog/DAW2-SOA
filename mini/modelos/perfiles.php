@@ -2,11 +2,11 @@
 modelo::usar('sesion');
 class perfil extends modeloDAO
 {
-const ROL_Invitado=0;
-const ROL_Cliente=1;
-const ROL_Administrador=2;
+const ROL_Invitado='Invitado';
+const ROL_Cliente='Cliente';
+const ROL_Administrador='Administrador';
+const ROL_Empleado='Empleado';
 
-//define('Roles',array('ROL_Invitado','ROL_Cliente','ROL_Administrador'));
 public static function esUsuarioPerfil($usuario,$perfil){
     if(strcmp($usuario[rol],$perfil)==0){
         return true;

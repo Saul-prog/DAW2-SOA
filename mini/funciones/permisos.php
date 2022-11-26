@@ -52,4 +52,26 @@ class usuario
   public $nombre= 'Invitado';
   public $login= null;
   public $password= null;
+
+
+    public function comprobar()
+    {
+        $sql='SELECT * FROM usuarios WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
+        $datos = basedatos::obtenerUno($sql);
+        if($datos){
+            $this->rellenar($datos);
+            this->poner_fecha();
+        }
+    }
+    public function rellenar($datos){
+        $this->id=$datos['id'];
+        $this->nombre=$datos['nombre'];
+        $this->perfil=$datos['perfil'];
+    }
+
+    public function poner_fecha(){
+        $sql='UPDATE usuarios SET ultima_fecha = WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
+    }
+
+
 }//class usuario

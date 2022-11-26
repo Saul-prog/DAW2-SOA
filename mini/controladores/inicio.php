@@ -1,5 +1,6 @@
 <?php
 //aplicacion::$modoPublico= true;
+modelo::usar( 'usuario');
 
 class controlador_inicio extends controlador
 {
@@ -31,25 +32,16 @@ class controlador_inicio extends controlador
     //Extraer Datos para ejecucion
     $valido= false;
     $bloqueado= false;
-    $usuario= new usuario();
+    $usuario= new usuario;
     if (isset($_POST['usuario'])) $usuario->login= $_POST['usuario'];
     if (isset($_POST['password'])) $usuario->password= $_POST['password'];
-    
+
     //Ejecutar accion
     
     //Comprobar Usuario y contraseña validos
-    //SIMULARLO!!!
-    if (($usuario->login == 'admin')
-        && ($usuario->password == 'admin')) {
+    //Si son validos se aprovecha el accso a la base de datos y se rellena
+    if ($usuario->comprobar()) {
       $valido= true;
-      $usuario->rol= 'Administrador';
-      $usuario->nombre= 'Tú mismo';
-      //aplicacion::$modoPublico= false;
-    } else if (($usuario->login == 'cliente') 
-      && ($usuario->password == 'cliente')) {
-      $valido= true;
-      $usuario->rol= 'Cliente';
-      $usuario->nombre= 'Cliente Prueba';
     } else {
       //No es valido...
     }//if
