@@ -120,7 +120,7 @@ class controlador_usuarios extends controlador
         if ($bien) {
             vista::redirigir( array('usuarios'), array('p'=>$pagina));
         } else {
-            vista::generarPagina( 'borrar', array(
+            vista::generarPagina( 'usuarios_borrar', array(
                 'modelo'=>$modelo,
                 'error'=>$error,
                 'pagina'=>$pagina,

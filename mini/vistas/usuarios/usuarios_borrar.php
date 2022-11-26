@@ -21,7 +21,7 @@ depurar( array(
 <div class="hoja">
     <table>
         <?php //Generar el cuerpo de la tabla con la ficha de articulo.
-        vista::generarParcial( 'usuario_ficha', array( 'modelo'=>$modelo, 'error'=>$error));
+        vista::generarParcial( 'usuarios_ficha', array( 'modelo'=>$modelo, 'error'=>$error));
         ?>
         <tfoot>
         <tr>
