@@ -3,7 +3,7 @@ modelo::usar( 'usuario');
 class controlador_usuarios extends controlador
 {
 
-    public $accion_defecto= 'administrar';
+    public $accion_defecto= 'admin';
 
     public function accion_crear(){
         $bien= false;
@@ -128,7 +128,7 @@ class controlador_usuarios extends controlador
         }//if
     }
 
-    public function accion_administrar(){
+    public function accion_admin(){
         //----------
         //Extraer Datos para ejecucion con la pagina que se está viendo.
         $pagina= (isset($_GET['p']) ? (int)$_GET['p'] : 0);
