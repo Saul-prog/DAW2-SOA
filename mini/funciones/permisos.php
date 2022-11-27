@@ -47,7 +47,7 @@ function puede_ejecutar( $usuario, $controlador, $accion)
 
 class usuario
 {
-  public $id= null;
+
   public $rol= 'Invitado';
   public $nombre= 'Invitado';
   public $login= null;
@@ -56,21 +56,36 @@ class usuario
 
     public function comprobar()
     {
-        $sql='SELECT * FROM usuarios WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
+        $sql='SELECT nombre,perfil FROM usuarios WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
         $datos = basedatos::obtenerUno($sql);
         if($datos){
-            $this->rellenar($datos);
-            this->poner_fecha();
+            $this->nombre=$datos['nombre'];
+            $this->rol=$datos['perfil'];
+
+            if($this->poner_fecha()){
+
+                return true;
+            }else{
+
+                return false;
+
+            }
         }
-    }
-    public function rellenar($datos){
-        $this->id=$datos['id'];
-        $this->nombre=$datos['nombre'];
-        $this->perfil=$datos['perfil'];
+        return false;
     }
 
     public function poner_fecha(){
-        $sql='UPDATE usuarios SET ultima_fecha = WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
+        //Se formatea la fecha en datetime de mysql
+        $ultima_fecha=date("Y-m-d H:i:s");
+        $sql='UPDATE usuarios SET ultima_fecha = "'.$ultima_fecha.'" WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
+        $datos = basedatos::ejecutarSQL($sql);
+        if($datos===false){
+
+            return false;
+        }else{
+            var_dump($this);
+            return true;
+        }
     }
 
 

@@ -31,9 +31,11 @@ depurar( array(
                     <div class="acciones">
                         <?php //Generar el pie de la tabla con las acciones.
                         //if (tiene_permiso( 'articulos.editar')) {
-                        vista::generarPieza( 'boton_accion', array( 'texto'=>'Guardar', 'icono'=>'guardar.png',
-                            'activo'=>false, 'url'=>array('a'=>'usuarios.editar', 'id'=>$modelo->id, 'p'=>$pagina),
-                            'submit'=>true));
+                        if($modelo!==Null){
+                            vista::generarPieza( 'boton_accion', array( 'texto'=>'Guardar', 'icono'=>'guardar.png',
+                                'activo'=>false, 'url'=>array('a'=>'usuarios.editar', 'id'=>$modelo->id, 'p'=>$pagina),
+                                'submit'=>true));
+                        }
                         //}//if "permiso"
 
                         //Generar el boton para VOLVER.

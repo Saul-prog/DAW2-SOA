@@ -33,18 +33,20 @@ class controlador_inicio extends controlador
     $valido= false;
     $bloqueado= false;
     $usuario= new usuario;
-    if (isset($_POST['usuario'])) $usuario->login= $_POST['usuario'];
-    if (isset($_POST['password'])) $usuario->password= $_POST['password'];
-
+    $usuario->login= (isset($_POST['usuario']) ? $_POST['usuario'] : NULL);
+    $usuario->password= (isset($_POST['usuario']) ? $_POST['usuario'] : NULL);
     //Ejecutar accion
     
     //Comprobar Usuario y contraseña validos
     //Si son validos se aprovecha el accso a la base de datos y se rellena
-    if ($usuario->comprobar()) {
-      $valido= true;
-    } else {
-      //No es valido...
-    }//if
+      if($usuario!==NULL){
+          if ($usuario->comprobar()) {
+              $valido= true;
+          } else {
+              //No es valido...
+          }//if
+      }
+
     
     //LOGIN si es valido o Control de bloqueo si no es valido.
     $veces= 0;

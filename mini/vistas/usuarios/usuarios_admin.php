@@ -29,6 +29,7 @@ depurar( array(
   <th>Contraseña</th>
   <th>Perfil</th>
   <th>Última fecha</th>
+  <th>Acciones</th>
 </tr>
 </thead>
 <tbody>

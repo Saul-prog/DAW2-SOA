@@ -18,6 +18,7 @@ array( 'titulo' => 'Clientes', 'url'=>'?a=clientes', 'activo'=>true),
     array( 'titulo' => 'Ofertas', 'url'=>'?a=ofertas'),
     array( 'titulo' => 'Catalogo', 'url'=>'?a=catalogo'),
     array( 'titulo' => 'Compra', 'url'=>'?a=compra'),
+    array( 'titulo' => 'Usuarios', 'url'=>'?a=usuarios'),
   array( 'titulo' => 'Pedidos', 'url'=>'?a=pedidos')
 );/*---------*/
 ?>

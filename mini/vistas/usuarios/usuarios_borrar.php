@@ -31,7 +31,7 @@ depurar( array(
                     if ($modelo !== null) {
 //if (tiene_permiso( 'articulos.borrar')) {
                         vista::generarPieza( 'boton_accion', array( 'texto'=>'Confirmar Borrado', 'icono'=>false,
-                            'activo'=>false, 'url'=>array('a'=>'usuarios.borrar', 'id'=>$modelo->referencia, 'ok'=>true, 'p'=>$pagina)));
+                            'activo'=>false, 'url'=>array('a'=>'usuarios.borrar', 'id'=>$modelo->id, 'ok'=>true, 'p'=>$pagina)));
 //}//if "permiso"
                     }//if "hay modelo"
                     //Generar el boton para VOLVER.
