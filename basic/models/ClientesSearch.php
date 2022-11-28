@@ -11,13 +11,14 @@ use app\models\Clientes;
  */
 class ClientesSearch extends Clientes
 {
+    public $nombreCompleto;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['referencia', 'cifnif', 'nombre', 'apellidos', 'domFiscal', 'domEnvio', 'notas', 'email', 'password'], 'safe'],
+            [['referencia', 'cifnif', 'nombre', 'apellidos', 'domFiscal', 'domEnvio', 'notas', 'email', 'password','nombreCompleto'], 'safe'],
         ];
     }
 
@@ -39,6 +40,9 @@ class ClientesSearch extends Clientes
      */
     public function search($params)
     {
+
+
+
         $query = Clientes::find();
 
         // add conditions that should always apply here
@@ -65,7 +69,9 @@ class ClientesSearch extends Clientes
             ->andFilterWhere(['like', 'notas', $this->notas])
             ->andFilterWhere(['like', 'email', $this->email])
             ->andFilterWhere(['like', 'password', $this->password]);
-
+        $query->andFilterWhere(['like', 'CONCAT(nombre, " ",apellidos)', $this->nombreCompleto]);
+        //La de abajo puede provocar inyección sql
+        //$query->andFilterWhere(['like', 'CONCAT(nombre, " ",apellidos)', '%'.$this->nombreCompleto.'%',false]);
         return $dataProvider;
     }
 }

@@ -58,6 +58,9 @@ class Clientes extends \yii\db\ActiveRecord
             'notas' => Yii::t('app', 'Notas'),
             'email' => Yii::t('app', 'Email'),
             'password' => Yii::t('app', 'Password'),
+
+            //Etiqueta de atributos virtuales
+            'nombreCompleto' =>'Nombre y apellidos',
         ];
     }
 
@@ -75,8 +78,27 @@ class Clientes extends \yii\db\ActiveRecord
         //yii\db\ActiveQuery    Nombre de la tablaOrigen, Lo que relaciona las tablas [keyOrigen=>keyDestino,....]
         return  $this->hasMany(Pedidos::class,['refCli'=>'referencia'])->inverseOf('cliente');
     }
+    protected $_numPedidos=null;
     public function getNumPedidos(){
         //Muy lento, buscar otra función
-        return  count($this->pedidos);
+        //return  count($this->pedidos);
+        if($this->_numPedidos===null){
+            $this->_numPedidos=$this->getPedidos()->count();
+        }
+        return $this->_numPedidos;
     }
+
+    /**
+     * Atributo virtual para el nombre completo
+     * @return Nombre completo
+     */
+
+    public function getNombreCompleto(){
+        //v1
+        return $this->nombre.' '.$this->apellidos;
+        //v2
+        //return $this->nombre.', '.$this->apellidos;
+    }
+
+
 }

@@ -31,8 +31,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'referencia',
             'cifnif',
-            'nombre',
-            'apellidos',
+            'nombreCompleto',
+            //'nombre',
+            //'apellidos',
             'domFiscal',
             //'domEnvio',
             //'notas:ntext',
