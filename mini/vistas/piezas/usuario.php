@@ -22,14 +22,31 @@ $usuario= sesion::get('usuario');
       )
     , true
   );
-  if ($usuario !== null) {
-    echo $usuario->nombre.'('.$usuario->rol.')';
-    echo '&nbsp;';
-    echo '<div class="acciones linea">'.$htmlLogout.'</div>';
+$htmlCrear= vista::generarPieza( 'boton_accion', array(
+        'texto'=>'Crear cuenta'
+    , 'icono'=>'login.png'
+    , 'activo'=>true
+    , 'url'=>array('a'=>'inicio.registro')
+        //, 'submit'=>true
+    )
+    , true
+);
+  if ($usuario === null) {
+      echo 'Invitado';
+      echo '&nbsp;';
+      echo '<div class="acciones linea">'.$htmlCrear.'|'.$htmlLogin.'</div>';
+
   } else {
-    echo 'Invitado';
-    echo '&nbsp;';
-    echo '<div class="acciones linea">'.$htmlLogin.'</div>';
+      if(strcmp($usuario->rol,'Invitado')==0){
+          echo 'Invitado';
+          echo '&nbsp;';
+          echo '<div class="acciones linea">'.$htmlCrear.'|'.$htmlLogin.'</div>';
+      }else{
+          echo $usuario->nombre.'('.$usuario->rol.')';
+          echo '&nbsp;';
+          echo '<div class="acciones linea">'.$htmlLogout.'</div>';
+      }
+
     //echo '<div class="acciones linea">'.$htmlLogin.$htmlLogout.'</div>';
   }
 ?>

@@ -34,7 +34,7 @@ class controlador_inicio extends controlador
     $bloqueado= false;
     $usuario= new usuario;
     $usuario->login= (isset($_POST['usuario']) ? $_POST['usuario'] : NULL);
-    $usuario->password= (isset($_POST['usuario']) ? $_POST['usuario'] : NULL);
+    $usuario->password= (isset($_POST['password']) ? $_POST['password'] : NULL);
     //Ejecutar accion
     
     //Comprobar Usuario y contraseña validos
@@ -43,11 +43,14 @@ class controlador_inicio extends controlador
           if ($usuario->comprobar()) {
               $valido= true;
           } else {
-              //No es valido...
+              /*echo 'No es válido';
+              var_dump($usuario);
+              sesion::set('usuario.veces', null);
+              vista::generarPagina('asd');*/
           }//if
       }
 
-    
+
     //LOGIN si es valido o Control de bloqueo si no es valido.
     $veces= 0;
     if ($valido) {

@@ -47,21 +47,26 @@ function puede_ejecutar( $usuario, $controlador, $accion)
 
 class usuario
 {
+    const ROL_Invitado='Invitado';
+    const ROL_Cliente='Cliente';
+    const ROL_Administrador='Administrador';
+    const ROL_Empleado='Empleado';
+
 
   public $rol= 'Invitado';
   public $nombre= 'Invitado';
   public $login= null;
   public $password= null;
-
+  public $id=null;
 
     public function comprobar()
     {
-        $sql='SELECT nombre,perfil FROM usuarios WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
+        $sql='SELECT id,nombre,perfil FROM usuarios WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
         $datos = basedatos::obtenerUno($sql);
         if($datos){
             $this->nombre=$datos['nombre'];
             $this->rol=$datos['perfil'];
-
+            $this->id=$datos['id'];
             if($this->poner_fecha()){
 
                 return true;
@@ -87,6 +92,4 @@ class usuario
             return true;
         }
     }
-
-
 }//class usuario

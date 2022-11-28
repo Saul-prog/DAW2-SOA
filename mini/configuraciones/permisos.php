@@ -19,5 +19,19 @@ return array(
   //Si no se encuentra coincidencia, PROHIBIR TODO al TODOS
   //array('*', '*', '*', false),
   //Si no se encuentra coincidencia, PERMITIR TODO al TODOS
-  array('*', '*', '*', true),
+    array('Administrador','*','*',true),
+    //Clientes
+    array('Cliente', 'catalogo', '*', true),
+    array('Cliente', 'ofertas', '*', true),
+    array('Cliente', 'cesta', '*', true),
+    array('Cliente', 'inicio', '*', true),
+    array('Cliente', 'compra', '*', true),
+    //Empleados
+    array('Empleado', 'usuarios', '*', false),
+    array('Empleado', '*', '*', true),
+    //Invitado
+    array('Invitado', 'catalogo', '*', true),
+    array('Invitado', 'ofertas', '*', true),
+    array('Invitado', 'inicio', '*', true),
+
 );

@@ -17,12 +17,45 @@ $opciones= array(
   ,array(...)
 );
 //-----*/
+modelo::usar('perfiles');
+if(perfil::esPerfil('Administrador')){
+    $opciones= array(
+        array( 'titulo' => 'Inicio', 'url'=>'?a=inicio'),
+        array( 'titulo' => 'Catálogo', 'url'=>'?a=catalogo'),
+        array( 'titulo' => 'Ofertas', 'url'=>'?a=ofertas'),
+        array( 'titulo' => 'Articulos', 'url'=>'?a=articulos'),
+        array( 'titulo' => 'Clientes', 'url'=>'?a=clientes'),
+        array( 'titulo' => 'Compra', 'url'=>'?a=compra'),
+        array( 'titulo' => 'pedidos', 'url'=>'?a=pedidos'),
+        array( 'titulo' => 'usuarios', 'url'=>'?a=usuarios'),
+    );
+}else if(perfil::esPerfil('Empleado')) {
+    $opciones = array(
+        array('titulo' => 'Inicio', 'url' => '?a=inicio'),
+        array('titulo' => 'Catálogo', 'url' => '?a=catalogo'),
+        array('titulo' => 'Ofertas', 'url' => '?a=ofertas'),
+        array('titulo' => 'Articulos', 'url' => '?a=articulos'),
+        array('titulo' => 'Clientes', 'url' => '?a=clientes'),
+        array('titulo' => 'Compra', 'url' => '?a=compra'),
+        array('titulo' => 'pedidos', 'url' => '?a=pedidos'),
+
+    );/*---------*/
+}
+
+
+
+
+
+
 ?>
 <div class="menu">
-<ul>
-<li><a href="?a=inicio">Inicio</a></li>
-<li><a href="?a=clientes">Clientes</a></li>
-<li><a href="?a=articulos">Articulos</a></li>
-<li><a href="?a=pedidos">Pedidos</a></li>
+    <ul><?php
+        foreach ($opciones as $array) {
+            echo "</li>";
+            echo "<a href=".$array['url'].">".$array['titulo']."</a>";
+            echo "</li>";
+
+            }
+        ?>
 </ul>
 </div>

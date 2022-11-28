@@ -47,7 +47,7 @@ class sesion
     if (isset($_SESSION[$variable])) $res= $_SESSION[$variable];
     //Descomentar la siguiente linea si se quieren guardar los 
     //parametros no creados manualmente que son por defecto.
-    //--else if ($defecto !== null) self::set( $variable, $defecto);
+    //else if ($defecto !== null) self::set( $variable, $defecto);
     return $res;
   }//get
 
