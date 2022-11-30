@@ -1,5 +1,6 @@
 <?php
 modelo::usar( 'compra');
+modelo::usar('perfiles');
 //---------------------------------------------------------------------------
 //Vista de cesta de la compra...
 //---------------------------------------------------------------------------
@@ -55,14 +56,24 @@ if (is_array($registros)) {
         echo '<div> <H2>Cantidad total: '.$cantidad_final.' Unidades</H2>';
         echo '<div> <H2>Precio total: '.$precio_final.'€</H2>';
     if($cantidad_final>0) {
-        vista::generarPieza('boton_accion', array('texto' => 'Vaciar', 'icono' => 'delete.png',
-            'activo' => false, 'url' => array('a' => 'compra.clear'),
-            'submit' => true));
-        echo '<div><H1>Comprar</H1>';
-        vista::generarPieza('boton_accion', array('texto' => 'Comprar', 'icono' => 'cart.png',
-            'activo' => false, 'url' => array('a' => 'compra.compra'),
-            'submit' => true));
-        echo '<div>';
+        if(perfil::esPerfil('Invitado')){
+            vista::generarPieza('boton_accion', array('texto' => 'Vaciar', 'icono' => 'delete.png',
+                'activo' => false, 'url' => array('a' => 'compra.clear'),
+                'submit' => true));
+            $vuelta='vuelta_compra';
+            $url= '?'.http_build_query( array('a'=>'inicio.registro', 'p'=>$pagina, 'vuelta'=>$vuelta));
+            echo '<a href="'.$url.'" <H1>Crear Cuenta</H1></a>';
+
+        }else{
+            vista::generarPieza('boton_accion', array('texto' => 'Vaciar', 'icono' => 'delete.png',
+                'activo' => false, 'url' => array('a' => 'compra.clear'),
+                'submit' => true));
+            echo '<div><H1>Comprar</H1>';
+            vista::generarPieza('boton_accion', array('texto' => 'Comprar', 'icono' => 'cart.png',
+                'activo' => false, 'url' => array('a' => 'compra.compra'),
+                'submit' => true));
+            echo '<div>';
+        }
     }
 } else {
     echo 'No hay datos.';

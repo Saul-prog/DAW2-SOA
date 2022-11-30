@@ -69,6 +69,8 @@ class Cesta
     }
   }//quitar
  public function eliminar( $id){
+      var_dump($id);
+
      if (isset( $this->datos[$id])){
          unset( $this->datos[$id]);
      }

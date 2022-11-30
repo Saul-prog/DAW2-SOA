@@ -22,6 +22,7 @@ if(perfil::esPerfil('Cliente')){
         array( 'titulo' => 'Inicio', 'url'=>'?a=inicio'),
         array( 'titulo' => 'Catálogo', 'url'=>'?a=catalogo'),
         array( 'titulo' => 'Ofertas', 'url'=>'?a=ofertas'),
+        array( 'titulo' => 'Compra', 'url'=>'?a=compra'),
 
     );/*---------*/
 }else if(perfil::esPerfil('Empleado')) {

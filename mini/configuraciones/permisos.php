@@ -23,7 +23,6 @@ return array(
     //Clientes
     array('Cliente', 'catalogo', '*', true),
     array('Cliente', 'ofertas', '*', true),
-    array('Cliente', 'cesta', '*', true),
     array('Cliente', 'inicio', '*', true),
     array('Cliente', 'compra', '*', true),
     //Empleados
@@ -33,5 +32,8 @@ return array(
     array('Invitado', 'catalogo', '*', true),
     array('Invitado', 'ofertas', '*', true),
     array('Invitado', 'inicio', '*', true),
+
+    array('Invitado', 'compra', 'ver', true),
+
 
 );

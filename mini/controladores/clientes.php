@@ -295,5 +295,21 @@ class controlador_clientes extends controlador
       }//if
     }//if
   }//accion_borrardemo
-  
+  public function accion_crearme(){
+      $cliente = new cliente;
+      $sql='SELECT * FROM clientes WHERE referencia LIKE "REG_%"';
+      $num_clientes=basedatos::contar($sql);
+      $numclientes++;
+
+      $cliente->referencia = sprintf('REG%06d',$num_clientes);
+      $cliente->idUsuario  =
+      $cliente->cifnif     = sprintf('CN%06d',$num_clientes);
+      $cliente->nombre     = $registro->nombre;
+      $cliente->apellidos  = 'apellido';
+      $cliente->domFiscal  = sprintf('DF%06d',$num_clientes);
+      $cliente->domEnvio   = sprintf('DE%06d',$num_clientes);
+      $cliente->notas      = null;
+      $cliente->email      = $registro->login;
+      $cliente->password   = $registro->password;
+  }
 }//class controlador_clientes

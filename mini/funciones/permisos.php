@@ -59,6 +59,25 @@ class usuario
   public $password= null;
   public $id=null;
 
+
+    public function rellenar($datos){
+        $this->id=$datos['id'];
+        $this->nombre=$datos['nombre'];
+        $this->perfil=$datos['perfil'];
+    }
+    public function poner_fecha(){
+        //Se formatea la fecha en datetime de mysql
+        $ultima_fecha=date("Y-m-d H:i:s");
+        $sql='UPDATE usuarios SET ultima_fecha = "'.$ultima_fecha.'" WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
+        $datos = basedatos::ejecutarSQL($sql);
+        if($datos===false){
+
+            return false;
+        }else{
+            var_dump($this);
+            return true;
+        }
+    }
     public function comprobar()
     {
         $sql='SELECT id,nombre,perfil FROM usuarios WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
@@ -79,17 +98,4 @@ class usuario
         return false;
     }
 
-    public function poner_fecha(){
-        //Se formatea la fecha en datetime de mysql
-        $ultima_fecha=date("Y-m-d H:i:s");
-        $sql='UPDATE usuarios SET ultima_fecha = "'.$ultima_fecha.'" WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
-        $datos = basedatos::ejecutarSQL($sql);
-        if($datos===false){
-
-            return false;
-        }else{
-            var_dump($this);
-            return true;
-        }
-    }
 }//class usuario

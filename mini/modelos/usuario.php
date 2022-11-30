@@ -29,14 +29,14 @@ protected $campoClave= array( 'id'=>null);
         return basedatos::escaparArray( $datos);
     }//datosTabla
 
-/*
+
 public function comprobar()
 {
     $sql='SELECT * FROM usuarios WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
     $datos = basedatos::obtenerUno($sql);
     if($datos){
         $this->rellenar($datos);
-        this->poner_fecha();
+        $this->poner_fecha();
     }
 }
 
@@ -45,7 +45,7 @@ public function rellenar($datos){
     $this->nombre=$datos['nombre'];
     $this->perfil=$datos['perfil'];
 }
-*/
+
 public function poner_fecha(){
     $sql='UPDATE usuarios SET ultima_fecha = WHERE login = "'.$this->login.'" AND password ="'.$this->password.'"';
 }

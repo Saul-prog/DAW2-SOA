@@ -11,7 +11,7 @@ class cliente extends modeloDAO
   public $notas;       //Notas internas para el Cliente
   public $email;       //Correo electronico del cliente y a la vez login de acceso al sistema
   public $password;    //Clave de acceso al sistema con espacio para un md5
-  
+  public $idUsuario;
   //-------------------------------------------------------------------------
   //Atributos a iniciar por heredar de "modeloDAO".
   //-------------------------------------------------------------------------
@@ -52,6 +52,7 @@ class cliente extends modeloDAO
       'notas'     =>$this->notas,
       'email'     =>$this->email,
       'password'  =>$this->password,
+      'idUsuario'  =>$this->idUsuario,
     );
 	return basedatos::escaparArray( $datos);
   }//datosSQL

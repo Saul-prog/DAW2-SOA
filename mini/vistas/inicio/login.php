@@ -12,7 +12,7 @@ Introduzca los datos de acceso al sistema:<br/>
 <fieldset>
   <label for="usr" style="display:inline-block;width:10em;">Usuario:</label>
   <input type="text" id="usr" name="usuario" size="10" 
-      value="<?php echo $usuario->login;?>" />
+      value="" />
   <br/>
   <label for="pwd" style="display:inline-block;width:10em;">Contraseña:</label>
   <input type="password" id="pwd" name="password" size="10" value=""/>

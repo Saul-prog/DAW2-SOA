@@ -61,7 +61,7 @@ if (is_array($registros)) {
             'activo'=>false, 'url'=>array('a'=>'compra.ver'),
             'submit'=>true));
         vista::generarPieza( 'boton_accion', array( 'texto'=>'Pagar', 'icono'=>'cart.png',
-            'activo'=>false, 'url'=>array('a'=>'compra.ver'),
+            'activo'=>false, 'url'=>array('a'=>'compra.confirmar'),
             'submit'=>true));
         echo '<div>';
     }
