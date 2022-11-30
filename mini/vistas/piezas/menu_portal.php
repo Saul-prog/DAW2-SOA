@@ -16,6 +16,7 @@ if(perfil::esPerfil('Cliente')){
         array( 'titulo' => 'Catálogo', 'url'=>'?a=catalogo'),
         array( 'titulo' => 'Ofertas', 'url'=>'?a=ofertas'),
         array( 'titulo' => 'Compra', 'url'=>'?a=compra'),
+        array( 'titulo' => 'Pedidos', 'url'=>'?a=clientes.pedidos'),
     );/*---------*/
 }else if(perfil::esPerfil('Invitado')){
     $opciones= array(

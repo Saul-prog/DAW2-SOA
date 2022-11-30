@@ -117,10 +117,12 @@ class controlador_compra extends controlador
 
         $sqlcliente='SELECT * FROM clientes WHERE idUsuario = "'.$us->id.'"';
         $rescliente=basedatos::obtenerUno($sqlcliente);
+
         if($rescliente===null){
             if(isset($_POST['cliente'])){
                 $datos=$_POST['cliente'];
                 $cliente = new cliente;
+
                 $sql='SELECT * FROM clientes WHERE referencia LIKE "REG%"';
                 $num_clientes=basedatos::contar($sql);
                 $num_clientes++;
@@ -139,11 +141,12 @@ class controlador_compra extends controlador
                 $us->password='';
 
                 $cliente->guardar();
+                $us->password='';
+                vista::generarPagina( 'cliente_datos', array( 'cliente'=>$cliente));
             }
-            $us->password='';
-            vista::generarPagina( 'rellenar_cliente', array(
-                'registros'=>$cliente,
-            ));
+
+            vista::generarPagina( 'rellenar_cliente');
+
 
         }elseif($rescliente===false){
             $us->password='';
@@ -152,11 +155,13 @@ class controlador_compra extends controlador
             $us->password='';
             $cliente=new cliente;
             $cliente->llenar($rescliente);
-
-            vista::generarPagina( 'cliente_datos', array(
-            ));
+            vista::generarPagina( 'cliente_datos', array( 'cliente'=>$cliente));
         }
     }
+
+
+
+
     public function accion_pagar(){
         $us=sesion::get('usuario');
         $id=$us->id;
@@ -167,16 +172,50 @@ class controlador_compra extends controlador
             //Se obtiene los datos del cliente para el pedido
             $sql='SELECT referencia,domEnvio FROM clientes WHERE idUsuario = "'.$us->id.'"';
             $rescliente=basedatos::obtenerUno($sql);
+
             //se crean los valores para pedido
             $referencia=$rescliente['referencia'];
             $domEnvio=$rescliente['domEnvio'];
-            $anyo=date("Y");
+            $serie=date("Y");
             $fecha=date("Y-m-d");
             $estado=0;
-            $numero=basedatos::contar('pedidos');
+            $sqlContar='SELECT COUNT(*) AS total FROM pedidos AS q;';
+            $result=basedatos::ejecutarSQL($sqlContar);
+            $res= $result->fetch_assoc();
+            $numero=$res['total'];
             $numero++;
-            //agregar pedidolin----------------------------------------------------------------------------
 
+            //agregar pedidos----------------------------------------------------------------------------
+            $SqlPedidos='INSERT INTO pedidos (serie,numero, fecha,refCli,domEnvio,estado,notas) VALUES 
+                                ("'.$serie.'", "'.$numero.'", "'.$fecha.'","'.$referencia.'","'.$domEnvio.'", "'.$estado.'",NULL);';
+            $res=basedatos::ejecutarSQL($SqlPedidos);
+            if($res===false){
+                var_dump($SqlPedidos);
+                die();
+            }
+            $cesta= Cesta::instancia_de_sesion();
+            $registros= $cesta->contenido();
+            $orden=1;
+            foreach($registros as $indice => $datos) {
+                //Se pone en la base de datos de unop en uno
+                $modelo = new articulo;
+                $modelo->rellenar($indice, $datos['oferta']);
+                $importeBase=0;
+                $importeBase=$modelo->precio*$datos['cantidad'];
+                $cuotaIva=0;
+                $cuotaIva= $importeBase*$modelo->iva/100;
+                $texto = sprintf('texto%06d',$orden);
+                $SqlPedlinea='INSERT INTO pedidoslin (serie,numero, orden,refArt,texto,cantidad,precio,iva,importeBase,cuotaIva) VALUES ("'.$serie.'", "'.$numero.'", "'.$orden.'","'.$modelo->referencia.'","'.$texto.'","'.$datos['cantidad'].'","'.$modelo->precio.'","'.$modelo->iva.'","'.$importeBase.'","'.$cuotaIva.'");';
+                $res=basedatos::ejecutarSQL($SqlPedlinea);
+                if($res===false){
+                    var_dump($modelo);
+                    var_dump($orden);
+                    die();
+                }
+                $orden++;
+            }
+            $cesta->vaciar();
+            vista::redirigir('?a=inicio');
         }else{
             vista::generarPagina( 'pago_cliente', array(
 

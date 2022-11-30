@@ -17,7 +17,7 @@ depurar( array(
 ));
 //-----*/
 ?>
-<h1>Datos del cliente</h1>
+<h1>Datos de tarjeta de cliente</h1>
 <form action="" method="post">
     <div class="hoja">
         <table>

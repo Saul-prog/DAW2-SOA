@@ -51,7 +51,7 @@ depurar( array(
                 </td></tr>
 
             </tbody>
-            ?>
+
             <tfoot>
             <tr>
                 <td colspan="2" class="cen">
@@ -59,8 +59,8 @@ depurar( array(
                     <div class="acciones">
                         <?php //Generar el pie de la tabla con las acciones.
                         //if (tiene_permiso( 'articulos.editar')) {
-                        vista::generarPieza( 'boton_accion', array( 'texto'=>'Guardar', 'icono'=>'guardar.png',
-                            'activo'=>false, 'url'=>array('a'=>'compra.pagar', 'p'=>0,),
+                        vista::generarPieza( 'boton_accion', array( 'texto'=>'Guardar datos', 'icono'=>'guardar.png',
+                            'activo'=>false, 'url'=>array('a'=>'compra.confirmar', 'p'=>0,),
                             'submit'=>true));
                         //}//if "permiso"
 

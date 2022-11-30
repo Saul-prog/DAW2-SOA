@@ -1,5 +1,7 @@
 <?php
 modelo::usar( 'cliente');
+modelo::usar( 'pedido');
+
 class controlador_clientes extends controlador
 {
   public $accion_defecto= 'admin';
@@ -312,4 +314,20 @@ class controlador_clientes extends controlador
       $cliente->email      = $registro->login;
       $cliente->password   = $registro->password;
   }
+
+  public function accion_pedidos(){
+    $modelo=new pedido();
+      $us=sesion::get('usuario');
+      $id=$us->id;
+      $sql='SELECT referencia FROM clientes WHERE idUsuario ='.$id;
+      $res=basedatos::obtenerUno($sql);
+      $sqlListar=sqlListar('',$res['referencia']);
+  }
+
+    public function accion_verp(){
+
+    }
+
+
+
 }//class controlador_clientes
