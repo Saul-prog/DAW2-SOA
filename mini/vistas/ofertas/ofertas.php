@@ -67,7 +67,7 @@ vista::generarPieza( 'paginador', array( 'url'=>array('a'=>'ofertas'), 'total'=>
 
 <div class="salto"></div>
 <?php //Informar del contenido de la cesta.
-/*--*x/
+
   $cesta= Cesta::instancia_de_sesion();
   echo '<pre>';
   echo sprintf( 
@@ -76,5 +76,5 @@ vista::generarPieza( 'paginador', array( 'url'=>array('a'=>'ofertas'), 'total'=>
     , $cesta->total_unidades()
   );
   echo '</pre>';
-  /*--*/
+
 ?>

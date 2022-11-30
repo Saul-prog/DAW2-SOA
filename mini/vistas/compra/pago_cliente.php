@@ -25,33 +25,24 @@ depurar( array(
             ?>
             <tbody class="formulario">
 
-                <tr><th>Nombre</th><td>
-                        <input type="text" name="cliente[nombre]" id=cliente_nombre" maxlength="50"
-                               value=""/>
-                    </td></tr>
-                <tr><th>Apellido</th><td>
-                        <input type="text" name="cliente[apellidos]" id="cliente_apellido" maxlength="50"
-                               value=""/>
-                    </td></tr>
-                <tr><th>CIF/NIF</th><td>
-                        <input type="text" name="cliente[cifnif]" id="domicilio_fiscal" maxlength="10"
-                               value=""/>
-                    </td></tr>
-                <tr><th>Domicilio fiscal</th><td>
-                        <input type="text" name="cliente[domicilio_fiscal]" id="domicilio_fiscal" maxlength="250"
-                               value=""/>
-                    </td></tr>
-                <tr><th>Domicilio de Envío</th><td>
-                    <input type="text" name="cliente[domicilio_envio]" id="domicilio_de_envio" maxlength="250"
+            <tr><th>Nombre</th><td>
+                    <input type="text" name="cliente[nombre]" id=cliente_nombre" maxlength="50"
                            value=""/>
                 </td></tr>
-                <tr><th>Notas</th><td>
-                    <input type="text" name="cliente[notas]" id="notas" maxlength="250"
+            <tr><th>Tarjeta</th><td>
+                    <input type="text" name="cliente[tarjeta]" id="cliente_apellido" maxlength="50"
                            value=""/>
                 </td></tr>
-
+            <tr><th>Fecha de caducidad</th><td>
+                    <input type="text" name="cliente[fecha_caducidad]" id="domicilio_fiscal" maxlength="10"
+                           value=""/>
+                </td></tr>
+            <tr><th>CCV</th><td>
+                    <input type="text" name="cliente[ccv]" id="domicilio_fiscal" maxlength="250"
+                           value=""/>
+                </td></tr>
             </tbody>
-            ?>
+
             <tfoot>
             <tr>
                 <td colspan="2" class="cen">
@@ -60,7 +51,7 @@ depurar( array(
                         <?php //Generar el pie de la tabla con las acciones.
                         //if (tiene_permiso( 'articulos.editar')) {
                         vista::generarPieza( 'boton_accion', array( 'texto'=>'Guardar', 'icono'=>'guardar.png',
-                            'activo'=>false, 'url'=>array('a'=>'compra.pagar', 'p'=>0,),
+                            'activo'=>false, 'url'=>array('a'=>'compra.pagar', 'p'=>0,'pago'=>1),
                             'submit'=>true));
                         //}//if "permiso"
 

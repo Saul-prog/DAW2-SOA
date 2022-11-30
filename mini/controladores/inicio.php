@@ -39,16 +39,9 @@ class controlador_inicio extends controlador
     //Comprobar Usuario y contraseña validos
     //Si son validos se aprovecha el accso a la base de datos y se rellena
       if($usuario!==NULL){
-
           if ($usuario->comprobar()) {
               $valido= true;
-
-          } else {
-
-
-
-              //vista::generarPagina('asd');
-          }//if
+          }
       }
 
 

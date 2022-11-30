@@ -121,7 +121,7 @@ class controlador_compra extends controlador
             if(isset($_POST['cliente'])){
                 $datos=$_POST['cliente'];
                 $cliente = new cliente;
-                $sql='SELECT * FROM clientes WHERE referencia LIKE "REG_%"';
+                $sql='SELECT * FROM clientes WHERE referencia LIKE "REG%"';
                 $num_clientes=basedatos::contar($sql);
                 $num_clientes++;
 
@@ -137,12 +137,12 @@ class controlador_compra extends controlador
                 $cliente->email      = $us->login;
                 $cliente->password   =$us->password;
                 $us->password='';
-              
+
                 $cliente->guardar();
             }
             $us->password='';
             vista::generarPagina( 'rellenar_cliente', array(
-
+                'registros'=>$cliente,
             ));
 
         }elseif($rescliente===false){
@@ -150,13 +150,38 @@ class controlador_compra extends controlador
             var_dump($rescliente);
         }else{
             $us->password='';
+            $cliente=new cliente;
             $cliente->llenar($rescliente);
-            /*vista::generarPagina( 'compra_final', array(
-                'pagina'=>$pagina=1,
-                'lineas'=>$lineas,
-                'total'=>$total,
-                'registros'=>$registros,
-            ));*/
+
+            vista::generarPagina( 'cliente_datos', array(
+            ));
         }
+    }
+    public function accion_pagar(){
+        $us=sesion::get('usuario');
+        $id=$us->id;
+
+        $pagar=(isset($_GET['pago']) ? $_GET['pago'] : 0);
+
+        if($pagar){
+            //Se obtiene los datos del cliente para el pedido
+            $sql='SELECT referencia,domEnvio FROM clientes WHERE idUsuario = "'.$us->id.'"';
+            $rescliente=basedatos::obtenerUno($sql);
+            //se crean los valores para pedido
+            $referencia=$rescliente['referencia'];
+            $domEnvio=$rescliente['domEnvio'];
+            $anyo=date("Y");
+            $fecha=date("Y-m-d");
+            $estado=0;
+            $numero=basedatos::contar('pedidos');
+            $numero++;
+            //agregar pedidolin----------------------------------------------------------------------------
+
+        }else{
+            vista::generarPagina( 'pago_cliente', array(
+
+            ));
+        }
+
     }
 }
