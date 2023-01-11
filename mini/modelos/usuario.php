@@ -39,6 +39,14 @@ public function comprobar()
         $this->poner_fecha();
     }
 }
+public function yaExiste(){
+    $sql='SELECT * FROM usuarios WHERE login = "'.$this->login.'"';
+    $datos = basedatos::obtenerUno($sql);
+    if($datos===null){
+        return true;
+    }
+    return false;
+}
 
 public function rellenar($datos){
     $this->id=$datos['id'];

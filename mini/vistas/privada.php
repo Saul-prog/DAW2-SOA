@@ -18,7 +18,7 @@
 </head>
 <body class="pagina">
   <div class="cabecera">
-  <strong>Plantilla Privada:</strong> ...lo que sea de una cabecera...
+  <strong>Plantilla Privada:</strong>
   <?php vista::generarPieza('usuario'); ?>
   </div>
   <div class="cuerpo">

@@ -75,6 +75,8 @@ if (is_array($registros)) {
             echo '<div>';
         }
     }
+    echo ' <div class="salto"></div>';
+
 } else {
     echo 'No hay datos.';
 }

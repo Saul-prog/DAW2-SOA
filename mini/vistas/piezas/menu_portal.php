@@ -34,7 +34,8 @@ if(perfil::esPerfil('Cliente')){
         array('titulo' => 'Articulos', 'url' => '?a=articulos'),
         array('titulo' => 'Clientes', 'url' => '?a=clientes'),
         array('titulo' => 'Compra', 'url' => '?a=compra'),
-        array('titulo' => 'pedidos', 'url' => '?a=pedidos'),
+        array('titulo' => 'Pedidos', 'url' => '?a=pedidos'),
+        array( 'titulo'=> 'Pedidos Personales', 'url'=>'?a=clientes.pedidos'),
 
     );/*---------*/
 }else if(perfil::esPerfil('Administrador')) {
@@ -47,6 +48,7 @@ if(perfil::esPerfil('Cliente')){
         array( 'titulo' => 'Compra', 'url'=>'?a=compra'),
         array( 'titulo' => 'pedidos', 'url'=>'?a=pedidos'),
         array( 'titulo' => 'usuarios', 'url'=>'?a=usuarios'),
+        array( 'titulo'=> 'Pedidos Personales', 'url'=>'?a=clientes.pedidos'),
 
     );/*---------*/
 }else{

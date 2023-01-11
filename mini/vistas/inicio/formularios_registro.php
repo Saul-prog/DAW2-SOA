@@ -17,17 +17,22 @@ depurar( array(
 ));
 //-----*/
 ?>
-<h1>Crear cuenta</h1>
-<form action="" method="post">
-    <div class="hoja">
-        <table>
+<div class="w3-card-4">
+    <div class="w3-container w3-green">
+        <h1>Crear cuenta</h1>
+
+    </div>
+
+<form action="" method="post" class="w3-container">
+
+        <table >
             <?php //Generar el cuerpo de la tabla con el formulario de usuario.
             vista::generarParcial( 'inicio_formulario', array( 'modelo'=>$modelo, 'error'=>$error));
             ?>
             <tfoot>
             <tr>
                 <td colspan="2" class="cen">
-                    <?php if (!empty($error)) { ?><div class="mensaje"><?php echo $error; ?></div><?php }//if ?>
+                    <?php if (!empty($error)) { ?><div class="w3-panel w3-red"><?php echo $error; ?></div><?php }//if ?>
                     <div class="acciones">
                         <?php //Generar el pie de la tabla con las acciones.
 
@@ -45,5 +50,6 @@ depurar( array(
             </tr>
             </tfoot>
         </table>
+
 </form>
 </div>

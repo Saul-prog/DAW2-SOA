@@ -32,6 +32,7 @@ class controlador_inicio extends controlador
     //Extraer Datos para ejecucion
     $valido= false;
     $bloqueado= false;
+    $error='';
     $usuario= new usuario;
     $usuario->login= (isset($_POST['usuario']) ? $_POST['usuario'] : NULL);
     $usuario->password= (isset($_POST['password']) ? $_POST['password'] : NULL);
@@ -42,6 +43,9 @@ class controlador_inicio extends controlador
           if ($usuario->comprobar()) {
               $valido= true;
           }
+          $veces=sesion::get('usuario.veces',0);
+          if($veces>0)
+            $error='Usuario o contraseña incorrecto';
       }
 
 
@@ -68,7 +72,7 @@ class controlador_inicio extends controlador
         . ' más de '.$veces.' veces. '
       );
     } else {
-      vista::generarPagina( 'login', array( 'usuario'=>$usuario));
+      vista::generarPagina( 'login', array( 'usuario'=>$usuario,'error'=>$error));
     }
   }//accion_login
   
@@ -102,10 +106,19 @@ class controlador_inicio extends controlador
             $usuario->login=$datos['login'];
             $usuario->perfil=$datos['perfil'];
             $usuario->ultima_fecha=$datos['ultima_fecha'];
+            $existe=$usuario->yaExiste();
             //Intentar guardar validando antes el modelo...
-            $bien= $usuario->guardar();
+            if($usuario->nombre!==null&&$usuario->login!==NULL&&$usuario->password!==null&&$existe) {
+
+                $bien = $usuario->guardar();
+            }else {
+                $error = 'Rellene los campos<br>';
+                if(!$existe){
+                    $error = 'Correo no válido<br>';
+                }
+            }
             if ($bien) $error= 'El usuario se ha guardado correctamente.';
-            else $error= 'No se ha podido guardar el usuario nuevo.';
+            else $error.= 'No se ha podido guardar el usuario nuevo.';
         }//if
         if ($bien) {
             //se crea un nuevo usuario para tener en la sesión

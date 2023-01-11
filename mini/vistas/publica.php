@@ -14,11 +14,12 @@
   <meta charset="utf8"/>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <link href="recursos/principal.css" media="screen" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <title>Prueba: <?php /*echo pagina::$titulo;*/?></title>
 </head>
 <body class="pagina">
-  <div class="cabecera">
-  <strong>Plantilla Pública:</strong> ...lo que sea de una cabecera...
+  <div class="w3-container w3-teal">
+      <h1>POSEIDAW2</h1>
   <?php vista::generarPieza('usuario'); ?>
   </div>
   <div class="cuerpo">
@@ -31,15 +32,11 @@
     </div>
     <div class="salto"></div>
   </div>
-  <div class="pie salto">
-    &copy; Desarrollo de Aplicaciones Web II - EPSZ - Univ. Salamanca
+  <div class="w3-container w3-teal">
+
+      <p> &copy; Desarrollo de Aplicaciones Web II - EPSZ - Univ. Salamanca - Saúl Otero García
+      </p>
   </div>
-  
-  
-  <?php //Depurar sesion
-    echo '<pre>';
-    print_r( $_SESSION);
-    echo '</pre>';
-  ?>
+
 </body>
 </html>

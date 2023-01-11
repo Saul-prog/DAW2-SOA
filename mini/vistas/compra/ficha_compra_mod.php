@@ -17,7 +17,7 @@ depurar( array(
 ));
 //-----*/?>
 
-<div class="articulo">
+
     <div class="caja-sombra">
         <?php echo $articulo->referencia;
         $cantidad_mod=1;
@@ -29,25 +29,27 @@ depurar( array(
         <div class="der">
             Precio: <?php echo $articulo->precio;?>€<br>
         </div>
-        IVA:    <?php echo $articulo->iva;?>
+        IVA:    <?php echo $articulo->iva.'%';?>
         <br>
-        Cantidad articulos: <?php echo $datos['cantidad'];?>
-
-        <?php
-        if($datos['oferta']){
-             echo 'Cantidad articulos: Es una oferta';
-        }
-
-        $url= '?'.http_build_query( array('a'=>'compra.quitar', 'ref'=>$articulo->referencia,'cantidad'=>$cantidad_mod));
+        Cantidad articulos:
+        <?php $url= '?'.http_build_query( array('a'=>'compra.quitar', 'ref'=>$articulo->referencia,'cantidad'=>$cantidad_mod));
         echo '<a href="'.$url.'">';
             echo '<img src="recursos/menos.png" title="Quitar uno de la cesta" alt="Quitar uno de la cesta" width="16px" height="auto"/>';
             echo '</a>';
         ?>
+         <?php echo $datos['cantidad'];?>
+
         <?php
         $url2= '?'.http_build_query( array('a'=>'compra.add', 'ref'=>$articulo->referencia,'cantidad'=>$cantidad_mod,'oferta'=>$datos['oferta']));
         echo '<a href="'.$url2.'">';
         echo '<img src="recursos/plus.png" title="Quitar uno de la cesta" alt="Quitar uno de la cesta" width="16px" height="auto"/>';
         echo '</a>';
+
+        if($datos['oferta']){
+             echo '<br> <div style="color:red", >En oferta</div>';
+        }
+
+
 
 
 
@@ -56,9 +58,8 @@ depurar( array(
         <form action="?a=compra.set" method="post">
         <input type="text" name="cantidad" id="cantidad" value="1"/>
         <input type="hidden" name="ref" id="ref" value="<?php echo $articulo->referencia?>"/>
-        <input type="submit" value="Añadir">
+        <input type="submit" value="Establecer">
         </form>
         <hr>
 
     </div>
-</div>

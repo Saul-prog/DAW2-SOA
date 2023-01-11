@@ -36,7 +36,7 @@ if (is_string( $icono) && is_readable( dirname(__FILE__).'/../../recursos/'.$ico
 } else {
   $icono= false;
 }//if
-echo '<a href="'.$url.'"'.($activo ? ' class="activo"':'')
+echo '<a href="'.$url.'"'.($activo ? ' class="w3-bar-item w3-button"':'')
   .($submit ? 'onclick="document.forms[0].action=this.href;document.forms[0].submit();return false;"' : '')
   .'>';
 if ($icono !== false) echo $icono;

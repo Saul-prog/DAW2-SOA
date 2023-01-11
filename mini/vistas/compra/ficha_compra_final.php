@@ -16,7 +16,7 @@ depurar( array(
   'error' => $error,
 ));
 //-----*/?>
-<div class="articulo">
+
     <div class="caja-sombra">
         <?php echo $articulo->referencia;?><br/>
         <div class="der">
@@ -27,4 +27,3 @@ depurar( array(
         Precio total: <?php echo $articulo->precio*$datos['cantidad'];?>
         <hr>
     </div>
-</div>

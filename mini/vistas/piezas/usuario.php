@@ -33,18 +33,17 @@ $htmlCrear= vista::generarPieza( 'boton_accion', array(
 );
   if ($usuario === null) {
       echo 'Invitado';
-      echo '&nbsp;';
-      echo '<div class="acciones linea">'.$htmlCrear.'|'.$htmlLogin.'</div>';
+      echo '<div class="w3-bar w3-black">'.$htmlCrear.$htmlLogin.'</div>';
 
   } else {
       if(strcmp($usuario->rol,'Invitado')==0){
-          echo 'Invitado';
-          echo '&nbsp;';
-          echo '<div class="acciones linea">'.$htmlCrear.'|'.$htmlLogin.'</div>';
+        echo 'Invitado';
+
+          echo '<div class="w3-bar w3-black">'.$htmlCrear .$htmlLogin.'</div>';
       }else{
           echo $usuario->nombre.'('.$usuario->rol.')';
-          echo '&nbsp;';
-          echo '<div class="acciones linea">'.$htmlLogout.'</div>';
+
+          echo '<div class="w3-bar w3-black">'.$htmlLogout.'</div>';
       }
 
     //echo '<div class="acciones linea">'.$htmlLogin.$htmlLogout.'</div>';

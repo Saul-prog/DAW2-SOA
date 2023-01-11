@@ -316,16 +316,33 @@ class controlador_clientes extends controlador
   }
 
   public function accion_pedidos(){
-    $modelo=new pedido();
+    $modelo=new pedido;
       $us=sesion::get('usuario');
       $id=$us->id;
       $sql='SELECT referencia FROM clientes WHERE idUsuario ='.$id;
       $res=basedatos::obtenerUno($sql);
-      $sqlListar=sqlListar('',$res['referencia']);
+      $sqlListar=$modelo->sqlListar('',$res['referencia']);
+      $registros=basedatos::obtenerTodos($sqlListar);
+      vista::generarPagina( 'ver_pedidos', array(
+          'pagina'=>0,
+          'lineas'=>0,
+          'total'=>0,
+          'registros'=>$registros,
+      ));
   }
 
     public function accion_verp(){
-
+        $serie =(isset($_GET['refA']) ? $_GET['refA'] : NULL);
+        $numero=(isset($_GET['refB']) ? $_GET['refB'] : NULL);
+        $pedidolin=new pedidolin;
+        $sql=$pedidolin->sqlListar('',$serie,$numero);
+        $registros=basedatos::obtenerTodos($sql);
+        vista::generarPagina( 'verp', array(
+            'pagina'=>0,
+            'lineas'=>0,
+            'total'=>0,
+            'registros'=>$registros,
+        ));
     }
 
 
